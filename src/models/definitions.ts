@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface Expression {
     type: ("string" | "int" | "float" | "decimal" | "boolean")[],
     kind: string,

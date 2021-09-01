@@ -1,3 +1,4 @@
+import React from 'react';
 import { RightPane } from '../RightPane';
 import { LeftPane } from '../LeftPane';
 
