@@ -5,7 +5,9 @@ import '../MainContainer/styles.css';
 export function RightPane() {
     return (
         <div className="App-rightPane">
-            <h1>RP</h1>
+            <h3>Suggestions</h3>
+            <button className="closure-button-cancel closure-button">Cancel</button>
+            <button className="closure-button-save closure-button">Save</button>
         </div>
     );
 }

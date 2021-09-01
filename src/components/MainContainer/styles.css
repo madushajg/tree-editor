@@ -11,23 +11,27 @@
     display: flex;
     flex-direction: raw;
     background-color: #11052e;
-    width: 50%;
-    height: 100%;
+    width: 49%;
+    height: 87%;
+    z-index: 1;
+    position: absolute;
+    left: 51%;
+    top: 13%;
 }
 
 .App-leftPane {
     display: flex;
     flex-direction: column;
-    background-color: #ff232e;
-    width: 65%;
+    background-color: #f7f8fb;
+    width: 60%;
     height: 100%;
 }
   
 .App-rightPane {
     display: flex;
     flex-direction: row;
-    background-color: #6523ff;
-    width: 35%;
+    background-color: #f7f8fb;
+    width: 40%;
     height: 100%;
 }
 
@@ -108,22 +112,47 @@
     color: #2f068f;
 }
 
-button {
+.closure-button {
     background-color: #637a68;
     color: white;
-    padding: 15px 32px;
+    padding: 15px 10px;
     text-align: center;
     display: inline-block;
     font-size: 16px;
     border-radius: 10px;
     margin-left: 20px;
     margin-top: 20px;
-    /* border-style: solid */
+    height: fit-content;
+    width: fit-content;
+    position: absolute;
+    top: 85%;
+    border-color: #808bc7;
+    border-style: solid;
+}
+
+.closure-button-cancel {
+    left: 70%;
+    background-color: #f7f8ff;
+    color: #11052e;
+}
+
+.closure-button-save {
+    left: 80%;
+    background-color: #d5d8f0;
 }
 
 button:hover {
     background-color: #48584b;
     color: white;
+}
+
+.vl {
+    border-left: 3px solid rgb(151, 134, 247);
+    height: 640px;
+    position: absolute;
+    left: 60%;
+    margin-left: -3px;
+    top: 2%;
 }
 
 h1 {

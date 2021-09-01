@@ -1,4 +1,4 @@
-interface Expression {
+export interface Expression {
     type: ("string" | "int" | "float" | "decimal" | "boolean")[],
     kind: string,
     expressionType: 
@@ -10,31 +10,31 @@ interface Expression {
       | Expression
   }
   
-  interface Literal {
+export interface Literal {
     value: any
-  }
-  
-  interface Comparison {
+}
+
+export interface Comparison {
     lhs: Expression
     operator: ">" | "<"
     rhs: Expression
-  }
-  
-  interface Arithmatic {
+}
+
+export interface Arithmatic {
     lhs: Expression
     operator: "+" | "-"
     rhs: Expression
-  }
-  
-  interface TypeCheck {
+}
+
+export interface TypeCheck {
     lhs: Expression
     operator: "is"
     typeDescriptor: "string" | "int" | "float" | "boolean"
-  }
-  
-  interface Conditional {
+}
+
+export interface Conditional {
     condition: Expression
     trueExpr: Expression
     falseExpr: Expression
-  }
-  
+}
+ export {}
