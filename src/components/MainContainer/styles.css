@@ -80,7 +80,7 @@
 
 .App-suggestion-block {
     background-color: #f7f8fb;
-    display: flex;
+    display: inline-block;
     position: relative;
     left: 5%;
     height: 50%;

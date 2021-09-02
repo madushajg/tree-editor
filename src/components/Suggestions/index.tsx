@@ -1,14 +1,20 @@
 import React from "react";
-import { getSuggestionsBasedOnExpressionKind } from "../../utils";
+import { getOperatorSuggestions, getSuggestionsBasedOnExpressionKind } from "../../utils";
 
 import '../MainContainer/styles.css';
 
 interface SuggestionsProps {
-    kind: string
+    kind: string,
+    operator : boolean
 }
 export function Suggestions (props:SuggestionsProps) {
-    const { kind } = props;
-    var suggestionList = getSuggestionsBasedOnExpressionKind(kind);
+    const { kind , operator} = props;
+    var suggestionList: string[] = [];
+    if (operator) {
+        suggestionList = getOperatorSuggestions(kind);
+    } else {
+        suggestionList = getSuggestionsBasedOnExpressionKind(kind);
+    }
 
     return(
         <div className="App-suggestion-block">
@@ -16,5 +22,6 @@ export function Suggestions (props:SuggestionsProps) {
             <button className="suggestion-buttons ">{suggetion}</button> // onclick we should update the model and get the kind and update the list
         ))}
         </div>
+       
     );
 }

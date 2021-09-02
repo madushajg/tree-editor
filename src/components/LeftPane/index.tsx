@@ -1,6 +1,5 @@
 import React from "react";
 import {Expression} from '../../models/definitions'
-import {getSuggestionsBasedOnExpressionKind} from "../../utils/index"
 
 import '../MainContainer/styles.css';
 import { Suggestions } from "../Suggestions";
@@ -44,14 +43,13 @@ export function LeftPane() {
         }
     }
 
-    
 
     return (
         <div className="App-leftPane">
             <h2 className="App-leftPane-heading">Conditional Statement</h2>
             <div className="App-statement-template-editor"></div>
             <div className="App-context-sensitivePane">
-                <Suggestions kind="literal"/>
+                <Suggestions kind={"comparison"} operator={false}/>
             </div>
         </div>
     );

@@ -21,6 +21,15 @@ export const TypesForExpressionKind : {[key: string]: string[]} = {
     arithmetic : ["int","decimal","float","string"]
 }
 
+export const OperatorsForExpressionKind : {[key:string]: string[]} = {
+    arithmetic : ["+","-","*","/","%"],
+    logical : ["&&","||"],
+    unary: ["+","-","!","~"],
+    comparison: [">","<",">=","<=","==","!=","===","!=="],
+    shift : ["<<",">>",">>>"],
+    range : ["...","..<"]
+}
+
 export function getExpressionTypeComponent(kind: string) {
     return null
 }
