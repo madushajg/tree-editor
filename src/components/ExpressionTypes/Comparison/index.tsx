@@ -7,12 +7,12 @@ interface ComparisionProps {
     callback: (exp: Expression) => void
 }
 
-export function Comparision(props: ComparisionProps) {
+export function ComparisionC(props: ComparisionProps) {
     const {model, callback} = props;
     let lhs: any;
     let rhs: any;
     
-    if (model.kind == "comparison" ) {
+    if (model.kind === "Comparison" ) {
         const comparisonModel: Comparison = model.expressionType as Comparison;
         lhs = <ExpressionComponent model={comparisonModel.lhsExp} callback={callback}/>;
         rhs = <ExpressionComponent model={comparisonModel.rhsExp} callback={callback}/>;
@@ -29,5 +29,4 @@ export function Comparision(props: ComparisionProps) {
             {rhs}
         </div>
     );
-
-}   
+}

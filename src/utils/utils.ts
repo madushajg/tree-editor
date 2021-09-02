@@ -29,7 +29,3 @@ export const OperatorsForExpressionKind : {[key:string]: string[]} = {
     shift : ["<<",">>",">>>"],
     range : ["...","..<"]
 }
-
-export function getExpressionTypeComponent(kind: string) {
-    return null
-}

@@ -10,13 +10,15 @@ interface ExpressionComponentProps {
 export function ExpressionComponent(props: ExpressionComponentProps) {
     const { model, callback } = props;
 
-    const component = getExpressionTypeComponent(model.kind);
+    const component = getExpressionTypeComponent(model);
+
     const onClickWholeExpression = () => {
         callback(model);
     };
 
     return (
         <div onClick={onClickWholeExpression}>
+            {/* <h5>expComp</h5> */}
             {component}
         </div>
     );
