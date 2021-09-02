@@ -1,8 +1,7 @@
 import React from 'react';
 import { RightPane } from '../RightPane';
 import { LeftPane } from '../LeftPane';
-import image1 from './lowcode.png';
-import image2 from './lc.png';
+import image2 from './base.png';
 
 import './styles.css';
 
