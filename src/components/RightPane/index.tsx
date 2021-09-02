@@ -14,7 +14,9 @@ export function RightPane() {
             <div className="App-rightPane-block">
                 <h2 className="App-rightPane-heading">Functions</h2>
             </div>
-            
+            <button className="closure-button-cancel closure-button">Cancel</button>
+            <button className="closure-button-save closure-button">Save</button>
+
         </div>
     );
 }
