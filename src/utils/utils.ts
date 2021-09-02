@@ -20,3 +20,7 @@ export const TypesForExpressionKind : {[key: string]: string[]} = {
     literal : ["boolean", "int", "string", "float", "decimal"],
     arithmetic : ["int","decimal","float","string"]
 }
+
+export function getExpressionTypeComponent(kind: string) {
+    return null
+}
