@@ -78,6 +78,16 @@
     top: 5%;
 }
 
+.App-suggestion-block {
+    background-color: #f7f8fb;
+    display: flex;
+    position: relative;
+    left: 5%;
+    height: 50%;
+    width: 90%;
+    top: 5%;
+}
+
 .App-statement-template-editor {
     position: relative;
     left: 5%;

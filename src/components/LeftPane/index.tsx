@@ -3,6 +3,7 @@ import {Expression} from '../../models/definitions'
 import {getSuggestionsBasedOnExpressionKind} from "../../utils/index"
 
 import '../MainContainer/styles.css';
+import { Suggestions } from "../Suggestions";
 
 export function LeftPane() {
 
@@ -43,7 +44,6 @@ export function LeftPane() {
         }
     }
 
-    var suggestionList = getSuggestionsBasedOnExpressionKind("literal");
     
 
     return (
@@ -51,9 +51,7 @@ export function LeftPane() {
             <h2 className="App-leftPane-heading">Conditional Statement</h2>
             <div className="App-statement-template-editor"></div>
             <div className="App-context-sensitivePane">
-                {suggestionList.map(suggetion => ( 
-                    <button className="suggestion-buttons ">{suggetion}</button> // onclick we should update the model and get the kind and update the list
-                ))}
+                <Suggestions kind="literal"/>
             </div>
         </div>
     );
