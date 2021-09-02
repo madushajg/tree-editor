@@ -2,11 +2,13 @@ export interface Expression {
     type: ("string" | "int" | "float" | "decimal" | "boolean")[],
     kind: string,
     expressionType: 
-      | Comparison
+      | Equality
+      | Relational
       | TypeCheck
       | Conditional
       | Literal
       | Arithmatic
+      | Variable
       | Expression
   }
   
@@ -14,21 +16,37 @@ export interface Literal {
     value: any
 }
 
+export interface Variable {
+    name: string
+}
+
 export interface Comparison {
-    lhs: Expression
-    operator: ">" | "<"
-    rhs: Expression
+    lhsExp: Expression,
+    operator: ">" | ">=" | "<" | "<=" | "==" | "!="
+    rhsExp: Expression
+}
+
+export interface Relational extends Comparison {
+    lhsExp: Expression
+    operator: ">" | ">=" | "<" | "<="
+    rhsExp: Expression
+}
+
+export interface Equality extends Comparison {
+    lhsExp: Expression
+    operator: "==" | "!="
+    rhsExp: Expression
 }
 
 export interface Arithmatic {
-    lhs: Expression
-    operator: "+" | "-"
-    rhs: Expression
+    lhsOperand: Expression
+    operator: "*" | "/" | "%" | "+" | "-"
+    rhsOperand: Expression
 }
 
 export interface TypeCheck {
-    lhs: Expression
-    operator: "is"
+    value: Expression
+    keyWord: "is"
     typeDescriptor: "string" | "int" | "float" | "boolean"
 }
 
@@ -37,4 +55,3 @@ export interface Conditional {
     trueExpr: Expression
     falseExpr: Expression
 }
- export {}
