@@ -1,6 +1,6 @@
 import React from "react";
 import { Expression } from "../../models/definitions";
-import {getExpressionTypeComponent} from "../../utils/utils";
+import {getExpressionTypeComponent} from "../../utils";
 
 interface ExpressionComponentProps {
     model: Expression
@@ -10,13 +10,15 @@ interface ExpressionComponentProps {
 export function ExpressionComponent(props: ExpressionComponentProps) {
     const { model, callback } = props;
 
-    const component = getExpressionTypeComponent(model.kind);
+    const component = getExpressionTypeComponent(model);
+
     const onClickWholeExpression = () => {
         callback(model);
     };
 
     return (
-        <div onClick={onClickWholeExpression}>
+        <div onClick={onClickWholeExpression} className="App-expression-component">
+            {/* <h5>expComp</h5> */}
             {component}
         </div>
     );
