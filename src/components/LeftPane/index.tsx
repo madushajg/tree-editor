@@ -1,6 +1,6 @@
 import React from "react";
 import {Expression} from '../../models/definitions'
-import { getExpressionTypeComponent } from "../../utils/index";
+import { getExpressionTypeComponent } from "../../utils";
 import { ExpressionComponent } from "../Expression";
 
 import '../MainContainer/styles.css';
