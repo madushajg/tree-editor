@@ -1,5 +1,5 @@
 import React from "react";
-import {Expression} from '../../models/definitions'
+import {Expression, Comparison} from '../../models/definitions'
 import { getExpressionTypeComponent } from "../../utils";
 import { ExpressionComponent } from "../Expression";
 
@@ -44,6 +44,7 @@ export function LeftPane() {
             }
         }
     }
+    const x= (sampleModel.expressionType as Comparison).lhsExp;
 
     // const sampleModel: Expression = {
     //     type: ["boolean"],
@@ -81,6 +82,8 @@ export function LeftPane() {
     }
 
 
+    console.log(x);
+    console.log(sampleModel);
     return (
         <div className="App-leftPane">
             <h3 className="App-leftPane-heading">Conditional Statement</h3>
