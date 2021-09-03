@@ -44,14 +44,16 @@ export interface Arithmatic {
     rhsOperand: Expression
 }
 
-export interface TypeCheck {
+export interface TypeCheck { // if (x is error)
     value: Expression
     keyWord: "is"
-    typeDescriptor: "string" | "int" | "float" | "boolean"
+    typeDescriptor: "string" | "int" | "float" | "decimal" | "boolean" | "error"
 }
 
-export interface Conditional {
+export interface Conditional {   // (1 == 1) ? x : y
     condition: Expression
+    keyWord1: "?"
     trueExpr: Expression
+    keyWord2: ":"
     falseExpr: Expression
 }

@@ -58,9 +58,12 @@ function createArithmatic ( operator: "*" | "/" | "%" | "+" | "-"): Arithmatic {
 
 function createConditional(): Conditional {
      return { condition: {type: ["int", "float", "decimal"], kind: "literal",},
+            keyWord1: '?',
             trueExpr: {type: ["int", "float", "decimal"], kind: "literal",},
+            keyWord2: ':',
             falseExpr: {type: ["int", "float", "decimal"], kind: "literal",}
-     }
+}
+     
 }
 
 function createTypeCheck (type: "string" | "int" | "float" | "boolean"): TypeCheck {
@@ -68,4 +71,8 @@ function createTypeCheck (type: "string" | "int" | "float" | "boolean"): TypeChe
             keyWord: "is",
             typeDescriptor: type
     }
+}
+
+export function getExpressionTypeComponent(kind: string) {
+    return null
 }
