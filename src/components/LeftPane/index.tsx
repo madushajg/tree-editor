@@ -1,9 +1,10 @@
 import React from "react";
 import {Expression} from '../../models/definitions'
-import { getExpressionTypeComponent } from "../../utils/utils";
+import { getExpressionTypeComponent } from "../../utils";
 import { ExpressionComponent } from "../Expression";
 
 import '../MainContainer/styles.css';
+import { Suggestions } from "../Suggestions";
 
 export function LeftPane() {
 
@@ -78,6 +79,7 @@ export function LeftPane() {
                 <ExpressionComponent model={sampleModel} callback={onClickButton}/>
             </div>
             <div className="App-context-sensitivePane">
+                <Suggestions kind={"comparison"} operator={false}/>
             </div>
 
         </div>
