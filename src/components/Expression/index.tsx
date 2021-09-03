@@ -1,6 +1,6 @@
 import React from "react";
 import { Expression } from "../../models/definitions";
-import {getExpressionTypeComponent} from "../../utils/utils";
+import {getExpressionTypeComponent} from "../../utils/index";
 
 interface ExpressionComponentProps {
     model: Expression
