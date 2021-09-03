@@ -15,8 +15,6 @@ export function LiteralC(props: LiteralProps) {
     }
 
     return (
-        <div id="literal">
-            <button>{value}</button>
-        </div>
+        <span className="App-expression-block App-expression-block-element">{value}</span>
     );
 }

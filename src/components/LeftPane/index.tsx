@@ -42,6 +42,7 @@ import { Suggestions } from "../Suggestions";
 //     }
 // }
 
+// if (var1 + var2) > (var10 + var20)
 export const sampleModel: Expression = {
     type: ["boolean"],
     kind: "RelationalC",

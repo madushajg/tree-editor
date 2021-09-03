@@ -24,16 +24,16 @@ export function ExpressionComponent(props: ExpressionComponentProps) {
         <span>
             {
                 isRoot ?
-                <span className="App-expression-block-disabled">
-                    if
+                <span className="App-expression-block App-expression-block-disabled">
+                    {"if"}
                 </span> : null
             }
-            <span className="gPhjAr">
+            {/* <span> */}
                 {component}
-            </span>
+            {/* </span> */}
             {
                 isRoot ?
-                <span className="App-expression-block-disabled">
+                <span className="App-expression-block App-expression-block-disabled">
                     {"{"}
                     <br/>
                     &nbsp;&nbsp;&nbsp;{"..."}
@@ -42,6 +42,7 @@ export function ExpressionComponent(props: ExpressionComponentProps) {
                     <br/>
                     &nbsp;&nbsp;&nbsp;{"..."}
                     <br/>
+                    {"}"}
                     {"}"}
                 </span> : null
             }              

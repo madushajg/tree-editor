@@ -15,8 +15,6 @@ export function VariableC(props: VariableProps) {
     }
 
     return (
-        <div>
-            <button>expression</button>
-        </div>
+        <span className="App-expression-block App-expression-block-element">expression</span>
     );
 }
