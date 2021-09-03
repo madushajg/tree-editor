@@ -17,7 +17,7 @@ export function ExpressionComponent(props: ExpressionComponentProps) {
     };
 
     return (
-        <div onClick={onClickWholeExpression}>
+        <div onClick={onClickWholeExpression} className="App-expression-component">
             {/* <h5>expComp</h5> */}
             {component}
         </div>

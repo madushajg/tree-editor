@@ -67,6 +67,15 @@ export function LeftPane() {
     //     }
     // }
 
+
+    // const sampleModel: Expression = {
+    //     type: ["boolean"],
+    //     kind: "LiteralC",
+    //     expressionType: {
+    //         value: "false"
+    //     }
+    // }
+
     const onClickButton = () => {
         getExpressionTypeComponent(sampleModel)
     }
@@ -74,7 +83,7 @@ export function LeftPane() {
 
     return (
         <div className="App-leftPane">
-            <h2 className="App-leftPane-heading">Conditional Statement</h2>
+            <h3 className="App-leftPane-heading">Conditional Statement</h3>
             <div className="App-statement-template-editor">
                 <ExpressionComponent model={sampleModel} callback={onClickButton}/>
             </div>

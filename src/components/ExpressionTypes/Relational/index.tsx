@@ -26,7 +26,6 @@ export function RelationalC(props: RelationalProps) {
         <div onClick={onClickWholeExpression}>
             <h5>relational</h5>
             {lhs}
-
             {rhs}
         </div>
     );
