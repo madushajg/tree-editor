@@ -9,14 +9,17 @@ interface RelationalProps {
 }
 
 export function RelationalC(props: RelationalProps) {
+    let expCount = 0;
     const {model, callback} = props;
     let lhs: any;
     let rhs: any;
+    let operator: string;
     
     if (model.kind === "RelationalC" ) {
         const relationalModel: Relational = model.expressionType as Relational;
-        lhs = <ExpressionComponent model={relationalModel.lhsExp} callback={callback}/>;
-        rhs = <ExpressionComponent model={relationalModel.rhsExp} callback={callback}/>;
+        lhs = <ExpressionComponent model={relationalModel.lhsExp} callback={callback} isRoot={false} />;
+        rhs = <ExpressionComponent model={relationalModel.rhsExp} callback={callback} isRoot={false} />;
+        operator = relationalModel.operator;
     }
 
     // const onClickWholeExpression = () => {
@@ -30,10 +33,10 @@ export function RelationalC(props: RelationalProps) {
     }
 
     return (
-        <div>
-            <h5>relational</h5>
-            <button onClick={() => onClickOnSuggestion(model, "comparision")}>Relational</button>
+        <div id="relational">
+            {/* <button onClick={() => onClickOnSuggestion(model, "comparision")}>Relational</button> */}
             {lhs}
+            <button>operator</button>
             {rhs}
         </div>
     );

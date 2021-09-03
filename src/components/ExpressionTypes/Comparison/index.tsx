@@ -14,8 +14,8 @@ export function ComparisionC(props: ComparisionProps) {
     
     if (model.kind === "Comparison" ) {
         const comparisonModel: Comparison = model.expressionType as Comparison;
-        lhs = <ExpressionComponent model={comparisonModel.lhsExp} callback={callback}/>;
-        rhs = <ExpressionComponent model={comparisonModel.rhsExp} callback={callback}/>;
+        lhs = <ExpressionComponent model={comparisonModel.lhsExp} callback={callback} isRoot={false}/>;
+        rhs = <ExpressionComponent model={comparisonModel.rhsExp} callback={callback} isRoot={false}/>;
     }
 
     const onClickWholeExpression = () => {

@@ -16,7 +16,7 @@ export function VariableC(props: VariableProps) {
 
     return (
         <div>
-            <h5>{name}</h5>
+            <button>expression</button>
         </div>
     );
 }

@@ -11,12 +11,12 @@ export function LiteralC(props: LiteralProps) {
     
     if (model.kind === "LiteralC" ) {
         const literalModel: Literal = model.expressionType as Literal;
-        value = literalModel.value;
+        value = literalModel?.value ? literalModel.value : "expression";
     }
 
     return (
         <div id="literal">
-            <h5>{value}</h5>
+            <button>{value}</button>
         </div>
     );
 }

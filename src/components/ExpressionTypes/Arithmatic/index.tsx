@@ -10,14 +10,15 @@ interface ArithmaticProps {
 }
 
 export function ArithmaticC(props: ArithmaticProps) {
+    let expCount = 0;
     const {model, callback} = props;
     let lhs: any;
     let rhs: any;
     
     if (model.kind === "ArithmaticC" ) {
         const arithmaticModel: Arithmatic = model.expressionType as Arithmatic;
-        lhs = <ExpressionComponent model={arithmaticModel.lhsOperand} callback={callback}/>;
-        rhs = <ExpressionComponent model={arithmaticModel.rhsOperand} callback={callback}/>;
+        lhs = <ExpressionComponent model={arithmaticModel.lhsOperand} callback={callback} isRoot={false}/>;
+        rhs = <ExpressionComponent model={arithmaticModel.rhsOperand} callback={callback} isRoot={false}/>;
     }
     console.log("========before click========")
     console.log(model)
@@ -35,10 +36,10 @@ export function ArithmaticC(props: ArithmaticProps) {
 
     return (
         <div>
-            <h5>arithmatic</h5>
-            <button onClick={() => onClickOnSuggestion(model, "literal")} className="suggestion-buttons">Arithmatic</button>
+            {/* <h5>arithmatic</h5> */}
+            {/* <button onClick={() => onClickOnSuggestion(model, "literal")} className="suggestion-buttons">Arithmatic</button> */}
             {lhs}
-
+            <button>operator</button>
             {rhs}
         </div>
     );

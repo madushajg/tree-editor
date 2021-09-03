@@ -92,11 +92,35 @@ export const sampleModel: Expression = {
     }
 }
 
+// if false
 // export const sampleModel: Expression = {
 //     type: ["boolean"],
 //     kind: "LiteralC",
+//     // expressionType: {
+//     //     value: "false"
+//     // }
+// }
+
+// // if 30 > 40
+// export const sampleModel: Expression = {
+//     type: ["boolean"],
+//     kind: "RelationalC",
 //     expressionType: {
-//         value: "false"
+//         rhsExp: {
+//             type: ["int"],
+//             kind: "LiteralC",
+//             // expressionType: {
+//             //     value: "30"
+//             // }
+//         },
+//         operator: ">",
+//         lhsExp: {
+//             type: ["int"],
+//             kind: "LiteralC",
+//             // expressionType: {
+//             //     value: "40"
+//             // }
+//         }
 //     }
 // }
 
@@ -138,7 +162,7 @@ export function LeftPane() {
     //         }
     //     }
     // }
-    const x= (sampleModel.expressionType as Comparison).lhsExp;
+    // const x= (sampleModel.expressionType as Comparison).lhsExp;
 
     // const sampleModel: Expression = {
     //     type: ["boolean"],
@@ -172,21 +196,21 @@ export function LeftPane() {
     // }
 
     const onClickButton = () => {
-        getExpressionTypeComponent(sampleModel)
+        // getExpressionTypeComponent(sampleModel)
     }
 
 
-    console.log(x);
+    // console.log(x);
     console.log(sampleModel);
     return (
         <div className="App-leftPane">
             <h3 className="App-leftPane-heading">Conditional Statement</h3>
             <div className="App-statement-template-editor">
-                <ExpressionComponent model={sampleModel} callback={onClickButton}/>
+                <ExpressionComponent model={sampleModel} callback={onClickButton} isRoot={true}/>
             </div>
-            {/* <div className="App-context-sensitivePane">
+            <div className="App-context-sensitivePane">
                 <Suggestions kind={"comparison"} operator={false}/>
-            </div> */}
+            </div>
 
         </div>
     );
