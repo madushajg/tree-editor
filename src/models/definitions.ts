@@ -1,7 +1,7 @@
 export interface Expression {
     type: ("string" | "int" | "float" | "decimal" | "boolean")[],
     kind: string,
-    expressionType: 
+    expressionType?: 
       | Equality
       | Relational
       | TypeCheck
