@@ -2,7 +2,8 @@ export const ExpressionSuggestionsByKind : {[key: string]: string[]} = {
     literal : ["comparison", "logical", "arithmetic"],
     comparison : ["arithmetic", "conditional", "type-checks"],
     arithmetic : ["literal","arithmetic", "conditional"],
-    logical : ["conditional"]
+    logical : ["conditional"],
+    conditional : ["literal"]
 }
 
 // Since there is no LS backend,we will not be able to find the type
