@@ -1,5 +1,6 @@
 import React from "react";
 import { Relational, Expression } from "../../../models/definitions";
+import { addExpression } from "../../../utils/utils";
 import { ExpressionComponent } from "../../Expression";
 
 interface RelationalProps {
@@ -18,13 +19,20 @@ export function RelationalC(props: RelationalProps) {
         rhs = <ExpressionComponent model={relationalModel.rhsExp} callback={callback}/>;
     }
 
-    const onClickWholeExpression = () => {
-        callback(model);
-    };
+    // const onClickWholeExpression = () => {
+    //     callback(model);
+    // };
+
+    const onClickOnSuggestion = (model: Expression, kind: string) => {
+        console.log(model)
+        addExpression(model, kind);
+        console.log(model)
+    }
 
     return (
-        <div onClick={onClickWholeExpression}>
+        <div>
             <h5>relational</h5>
+            <button onClick={() => onClickOnSuggestion(model, "comparision")}>Relational</button>
             {lhs}
             {rhs}
         </div>

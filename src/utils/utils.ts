@@ -17,16 +17,16 @@ export function addExpression (model: Expression, type: string, value?: any ){
     | Comparison
     | Expression;
 
-    if (type == 'literal'){
+    if (type === 'literal'){
         expressionTemplate = createLiteral(value);
     
-    } else if(type == 'comparison'){
+    } else if(type === 'comparison'){
         expressionTemplate = createComparison(value);
-    } else if (type == 'conditional'){
+    } else if (type === 'conditional'){
         expressionTemplate = createConditional();
-    } else if (type == 'arithmatic'){
+    } else if (type === 'arithmatic'){
         expressionTemplate = createArithmatic(value);
-    } else if( type == 'variable'){
+    } else if( type === 'variable'){
         expressionTemplate = createVariable(value);
     } else {
         expressionTemplate = createTypeCheck(value);
