@@ -38,9 +38,11 @@ export function ArithmaticC(props: ArithmaticProps) {
         <span>
             {/* <h5>arithmatic</h5> */}
             {/* <button onClick={() => onClickOnSuggestion(model, "literal")} className="suggestion-buttons">Arithmatic</button> */}
-            {lhs}
-            <span className="App-expression-block App-expression-block-element">operator</span>
-            {rhs}
+            <button className="template-button">{lhs}</button>
+            <span className="App-expression-block App-expression-block-element">
+                <button className="template-button">operator</button>    
+            </span>
+            <button className="template-button">{rhs}</button>
         </span>
     );
 }

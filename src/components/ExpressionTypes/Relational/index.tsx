@@ -35,9 +35,11 @@ export function RelationalC(props: RelationalProps) {
     return (
         <span>
             {/* <button onClick={() => onClickOnSuggestion(model, "comparision")}>Relational</button> */}
-            {lhs}
-            <span className="App-expression-block App-expression-block-element">operator</span>
-            {rhs}
+            <button className="template-button">{lhs}</button>
+            <span className="App-expression-block App-expression-block-element">
+                <button className="template-button">operator</button>
+            </span>
+            <button className="template-button">{rhs}</button>
         </span>
     );
 }

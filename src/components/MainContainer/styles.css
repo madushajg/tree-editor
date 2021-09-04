@@ -100,22 +100,15 @@
     display: flex;
 }
 
-/* .App-expression-block {
-    display: flex;
-    flex-direction: column;
+.App-statement-template-editor-inner {
     position: relative;
-    top: 10%;
-    left: 7%;
-    height: fit-content;
-    width: fit-content;
-    color: #490cd6;
-    margin-left: 10px;
-} */
+    left: 5%;
+    top: 5%
+}
+
 
 .App-expression-block {
     position: relative;
-    top: 5%;
-    left: 5%;
     padding-right: 10px;
 }
 
@@ -127,24 +120,6 @@
 
 .App-expression-block-disabled {
     color: rgba(12, 11, 11, 0.63);
-}
-
-/* .gPhjAr-root {
-    width: 100%;
-} */
-
-
-.gPhjAr {
-    width: 100%;
-    display: flex;
-    overflow: auto;
-    -webkit-box-align: center;
-    /* align-items: center; */
-    border: 1px solid rgb(90, 178, 242);
-    box-sizing: border-box;
-    border-radius: 0.4rem;
-    height: 50px;
-    padding-left: 4.2rem;
 }
 
 .App-expression-component {
@@ -193,6 +168,21 @@
     border-style: solid;
 }
 
+.template-button {
+    position: relative;
+    width: fit-content;
+    background-color: #ffffff;
+    color: rgb(0, 0, 255);
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-left: 2px;
+    margin-top: 1px;
+    border-color: #808bc7;
+    border-style:dotted;
+}
+
 .suggestion-buttons {
     padding: 6px 16px;
     font-size: 0.875rem;
@@ -207,6 +197,18 @@
     height: 40px;
     margin-left: 2%;
     margin-top: 6%;
+}
+
+.add-new-expression {
+    background-color: #f7f8fb; /* Green */
+    border: #6830e9;
+    border-style: solid;
+    color: #6830e9;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    /* cursor: pointer; */
+    border-radius: 50%;
 }
 
 .closure-button-cancel {

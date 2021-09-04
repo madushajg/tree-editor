@@ -6,6 +6,7 @@ import { ExpressionComponent } from "../Expression";
 import '../MainContainer/styles.css';
 import { Suggestions } from "../Suggestions";
 
+// if (var1 + var2) > 10
 // export const sampleModel: Expression = {
 //     type: ["boolean"],
 //     kind: "RelationalC",
@@ -107,15 +108,15 @@ export const sampleModel: Expression = {
 //     type: ["boolean"],
 //     kind: "RelationalC",
 //     expressionType: {
-//         rhsExp: {
+//         lhsExp: {
 //             type: ["int"],
 //             kind: "LiteralC",
-//             // expressionType: {
-//             //     value: "30"
-//             // }
+//             expressionType: {
+//                 value: "30"
+//             }
 //         },
 //         operator: ">",
-//         lhsExp: {
+//         rhsExp: {
 //             type: ["int"],
 //             kind: "LiteralC",
 //             // expressionType: {
@@ -207,7 +208,9 @@ export function LeftPane() {
         <div className="App-leftPane">
             <h3 className="App-leftPane-heading">Conditional Statement</h3>
             <div className="App-statement-template-editor">
-                <ExpressionComponent model={sampleModel} callback={onClickButton} isRoot={true}/>
+                <div className="App-statement-template-editor-inner">
+                    <ExpressionComponent model={sampleModel} callback={onClickButton} isRoot={true}/>
+                </div>
             </div>
             <div className="App-context-sensitivePane">
                 <Suggestions kind={"comparison"} operator={false}/>

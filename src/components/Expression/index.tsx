@@ -34,11 +34,13 @@ export function ExpressionComponent(props: ExpressionComponentProps) {
             {
                 isRoot ?
                 <span className="App-expression-block App-expression-block-disabled">
-                    {"{"}
+                    &nbsp;{"{"}
                     <br/>
                     &nbsp;&nbsp;&nbsp;{"..."}
                     <br/>
-                    {"} (+) else {"}
+                    {"} "}
+                    <button className="add-new-expression"> + </button>
+                    {" else {"}
                     <br/>
                     &nbsp;&nbsp;&nbsp;{"..."}
                     <br/>
