@@ -1,7 +1,5 @@
 
-import { Arithmatic, Comparison, Conditional, Equality, Expression, Literal, Relational, TypeCheck, Variable } from '../models/definitions';
-
-
+import { Arithmatic, Conditional, Equality, Expression, Literal, Relational, TypeCheck, Variable } from '../models/definitions';
 
 export function deleteExpression (model: Expression ) {
     delete model.expressionType;

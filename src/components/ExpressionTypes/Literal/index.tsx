@@ -1,4 +1,3 @@
-import { stringify } from "querystring";
 import React from "react";
 import { Expression, Literal } from "../../../models/definitions";
 import { getSuggestionsBasedOnExpressionKind } from "../../../utils";
@@ -13,9 +12,6 @@ export function LiteralC(props: LiteralProps) {
     let value: any;
 
     const onClickOnExpression = () => {
-        // callback(model);
-        console.log(`LiteralC kind: ${model.kind}`);
-        console.log(model);
         callBack(getSuggestionsBasedOnExpressionKind("LiteralC"), model)
     };
 
