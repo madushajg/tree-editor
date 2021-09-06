@@ -19,11 +19,12 @@ export function getOperatorSuggestions(kind:string) : string[] {
 }
 
 export function getExpressionTypeComponent(expression: Expression, callBack:(suggestions: string[], model: Expression) => void): ReactNode {
+   // console.log(`getExpressionTypeComponent kind ${expression}`)
    const ExprTypeComponent = (expressionTypeComponents as any)[expression.kind];
    
    if (!ExprTypeComponent) {
    }
-   console.log(`from util function ${callBack}`)
+
    return <ExprTypeComponent model={expression} callBack={callBack}/>;
 }
 

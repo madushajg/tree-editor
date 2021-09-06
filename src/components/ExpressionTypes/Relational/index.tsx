@@ -5,7 +5,7 @@ import { ExpressionComponent } from "../../Expression";
 
 interface RelationalProps {
     model: Expression
-    callBack: (exp: string[]) => void
+    callBack: (suggestions: string[], model: Expression) => void
 }
 
 export function RelationalC(props: RelationalProps) {
@@ -24,14 +24,21 @@ export function RelationalC(props: RelationalProps) {
         // suggestion = <Suggestions model={model} kind={"comparison"} operator={false} />;
     }
 
-    const onClickOnExpression = (suggestions:string[]) => {
+    // const onClickOnExpression = (suggestions:string[]) => {
+    //     // callback(model);
+    //     callBack(suggestions)
+    // };
+
+    const onClickOnExpression = () => {
         // callback(model);
-        callBack(suggestions)
+        console.log(`RelationalC kind: ${model.kind}`);
+        console.log(model);
+        callBack(getSuggestionsBasedOnExpressionKind("RelationalC"), model)
     };
 
     return (
         <span>
-            <button className="template-button" onClick={()=>onClickOnExpression(getSuggestionsBasedOnExpressionKind("relational"))}>{lhs}</button>
+            <button className="template-button" onClick={onClickOnExpression}>{lhs}</button>
             <span className="App-expression-block App-expression-block-element">
                 <button className="template-button">operator</button>
             </span>

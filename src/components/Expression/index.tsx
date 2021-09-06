@@ -12,7 +12,8 @@ interface ExpressionComponentProps {
 export function ExpressionComponent(props: ExpressionComponentProps) {
     const { model, callBack, isRoot } = props;
 
-    console.log(`from ExpressionComponent ${callBack}`)
+    console.log(`==================== ExpressionComponent ====================`)
+    console.log(model)
     const component = getExpressionTypeComponent(model, callBack);
 
     // const onClickWholeExpression = () => {
