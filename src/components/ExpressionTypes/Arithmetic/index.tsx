@@ -28,7 +28,7 @@ export function ArithmeticC(props: ArithmeticProps) {
     }
 
     const onClickOnExpression = () => {
-        callBack(getSuggestionsBasedOnExpressionKind("ArithmeticC"), model)
+        callBack(getSuggestionsBasedOnExpressionKind("ArithmeticC"), model, false)
     };
 
     return (

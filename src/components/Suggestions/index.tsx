@@ -32,7 +32,11 @@ export function Suggestions(props: SuggestionsProps) {
     return (
         <div className="App-suggestion-block">
             {suggestions.map((suggetion, index) => (
-                <button className="suggestion-buttons" key={index} onClick={() => onClickSuggestion(suggetion, operator, model)}>{suggetion.substring(0 , suggetion.length - 1)}</button>
+
+                <button className="suggestion-buttons" key={index} onClick={() => onClickSuggestion(suggetion, operator, model)}>
+                    {/* {operator ? suggetion : suggetion.substring(0, suggetion.length - 1)} */}
+                    {suggetion.substring(0, suggetion.length - 1)}
+                </button>
             ))}
         </div>
     );
