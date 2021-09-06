@@ -1,5 +1,5 @@
 import React from "react";
-import { Arithmatic, Expression } from "../../../models/definitions";
+import { Arithmetic, Expression } from "../../../models/definitions";
 import { getSuggestionsBasedOnExpressionKind } from "../../../utils";
 import { ExpressionComponent } from "../../Expression";
 
@@ -14,13 +14,13 @@ export function ArithmeticC(props: ArithmeticProps) {
     let rhs: any;
     
     if (model.kind === "ArithmeticC" ) {
-        const arithmaticModel: Arithmatic = model.expressionType as Arithmatic;
-        lhs = <ExpressionComponent model={arithmaticModel.lhsOperand} callBack={callBack} isRoot={false}/>;
-        rhs = <ExpressionComponent model={arithmaticModel.rhsOperand} callBack={callBack} isRoot={false}/>;
+        const arithmeticModel: Arithmetic = model.expressionType as Arithmetic;
+        lhs = <ExpressionComponent model={arithmeticModel.lhsOperand} callBack={callBack} isRoot={false}/>;
+        rhs = <ExpressionComponent model={arithmeticModel.rhsOperand} callBack={callBack} isRoot={false}/>;
     }
 
     const onClickOnExpression = () => {
-        callBack(getSuggestionsBasedOnExpressionKind("RelationalC"), model)
+        callBack(getSuggestionsBasedOnExpressionKind("ArithmeticC"), model)
     };
 
     return (

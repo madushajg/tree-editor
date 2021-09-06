@@ -29,7 +29,6 @@ export function LeftPane(props: ModelProps) {
         SetIsSuggestionClicked(!isSuggestionClicked)
     }
 
-    console.log(model);
     return (
         <div className="App-leftPane">
             <h3 className="App-leftPane-heading">Conditional Statement</h3>

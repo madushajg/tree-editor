@@ -1,8 +1,8 @@
 import React from 'react';
 import { ReactNode } from 'react';
-import * as expressionTypeComponents from '../components/ExpressionTypes';
 import { Expression } from '../models/definitions';
 import { ExpressionSuggestionsByKind, OperatorsForExpressionKind } from "./utils";
+import * as expressionTypeComponents from '../components/ExpressionTypes';
 
 export function getSuggestionsBasedOnExpressionKind(kind: string): string[] {
    return ExpressionSuggestionsByKind[kind];
@@ -16,7 +16,7 @@ export function getOperatorSuggestions(kind:string) : string[] {
    return []; // we can remove the empty array return if we only set the operator prop to true for the expressions with operators
 }
 
-export function getExpressionTypeComponent(expression: Expression, callBack:(suggestions: string[], model: Expression) => void): ReactNode {
+export function getExpressionTypeComponent(expression: Expression, callBack:(suggestions: string[], model: Expression) => void): ReactNode {   
    const ExprTypeComponent = (expressionTypeComponents as any)[expression.kind];
    
    if (!ExprTypeComponent) {

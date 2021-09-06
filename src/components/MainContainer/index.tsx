@@ -13,7 +13,7 @@ import { Expression } from '../../models/definitions';
 //     expressionType: {
 //         lhsExp: {
 //             type: ["int", "float", "decimal"],
-//             kind: "ArithmaticC",
+//             kind: "ArithmeticC",
 //             expressionType: {
 //                 lhsOperand: {
 //                     type: ["int", "float", "decimal", "string"],
@@ -44,64 +44,64 @@ import { Expression } from '../../models/definitions';
 // }
 
 // if (var1 + var2) > (var10 + var20)
-// export const sampleModel: Expression = {
-//     type: ["boolean"],
-//     kind: "RelationalC",
-//     expressionType: {
-//         lhsExp: {
-//             type: ["int", "float", "decimal"],
-//             kind: "ArithmaticC",
-//             expressionType: {
-//                 lhsOperand: {
-//                     type: ["int", "float", "decimal", "string"],
-//                     kind: "VariableC",
-//                     expressionType: {
-//                         name: "var1"
-//                     }
-//                 },
-//                 operator: "+",
-//                 rhsOperand: {
-//                     type: ["int", "float", "decimal", "string"],
-//                     kind: "VariableC",
-//                     expressionType: {
-//                         name: "var2"
-//                     }
-//                 }
-//             }
-//         },
-//         operator: ">",
-//         rhsExp: {
-//             type: ["int", "float", "decimal"],
-//             kind: "ArithmaticC",
-//             expressionType: {
-//                 lhsOperand: {
-//                     type: ["int", "float", "decimal", "string"],
-//                     kind: "VariableC",
-//                     expressionType: {
-//                         name: "var10"
-//                     }
-//                 },
-//                 operator: "+",
-//                 rhsOperand: {
-//                     type: ["int", "float", "decimal", "string"],
-//                     kind: "VariableC",
-//                     expressionType: {
-//                         name: "var20"
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
-
-// if false
 export const sampleModel: Expression = {
     type: ["boolean"],
-    kind: "LiteralC",
-    // expressionType: {
-    //     value: "false"
-    // }
+    kind: "RelationalC",
+    expressionType: {
+        lhsExp: {
+            type: ["int", "float", "decimal"],
+            kind: "ArithmeticC",
+            expressionType: {
+                lhsOperand: {
+                    type: ["int", "float", "decimal", "string"],
+                    kind: "VariableC",
+                    expressionType: {
+                        name: "var1"
+                    }
+                },
+                operator: "+",
+                rhsOperand: {
+                    type: ["int", "float", "decimal", "string"],
+                    kind: "VariableC",
+                    expressionType: {
+                        name: "var2"
+                    }
+                }
+            }
+        },
+        operator: ">",
+        rhsExp: {
+            type: ["int", "float", "decimal"],
+            kind: "ArithmeticC",
+            expressionType: {
+                lhsOperand: {
+                    type: ["int", "float", "decimal", "string"],
+                    kind: "VariableC",
+                    expressionType: {
+                        name: "var10"
+                    }
+                },
+                operator: "+",
+                rhsOperand: {
+                    type: ["int", "float", "decimal", "string"],
+                    kind: "VariableC",
+                    expressionType: {
+                        name: "var20"
+                    }
+                }
+            }
+        }
+    }
 }
+
+// if false
+// export const sampleModel: Expression = {
+//     type: ["boolean"],
+//     kind: "LiteralC",
+//     // expressionType: {
+//     //     value: "false"
+//     // }
+// }
 
 // // if 30 > 40
 // export const sampleModel: Expression = {

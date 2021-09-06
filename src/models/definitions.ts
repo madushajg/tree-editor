@@ -1,13 +1,13 @@
 export interface Expression {
     type: ("string" | "int" | "float" | "decimal" | "boolean")[],
     kind: string,
-    expressionType?: 
+    expressionType?:
       | Equality
       | Relational
       | TypeCheck
       | Conditional
       | Literal
-      | Arithmatic
+      | Arithmetic
       | Variable
       | Expression
   }
@@ -38,7 +38,7 @@ export interface Equality extends Comparison {
     rhsExp: Expression
 }
 
-export interface Arithmatic {
+export interface Arithmetic {
     lhsOperand: Expression
     operator: "*" | "/" | "%" | "+" | "-" | "operator"
     rhsOperand: Expression
