@@ -1,41 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { Relational, Expression } from "../../../models/definitions";
-import { addExpression } from "../../../utils/utils";
+import { getSuggestionsBasedOnExpressionKind } from "../../../utils";
 import { ExpressionComponent } from "../../Expression";
 
 interface RelationalProps {
     model: Expression
-    callback: (exp: Expression) => void
+    callBack: (exp: string[]) => void
 }
 
 export function RelationalC(props: RelationalProps) {
     let expCount = 0;
-    const {model, callback} = props;
+    const {model, callBack} = props;
     let lhs: any;
     let rhs: any;
     let operator: string;
     
+    
     if (model.kind === "RelationalC" ) {
         const relationalModel: Relational = model.expressionType as Relational;
-        lhs = <ExpressionComponent model={relationalModel.lhsExp} callback={callback} isRoot={false} />;
-        rhs = <ExpressionComponent model={relationalModel.rhsExp} callback={callback} isRoot={false} />;
+        lhs = <ExpressionComponent model={relationalModel.lhsExp} callBack={callBack} isRoot={false} />;
+        rhs = <ExpressionComponent model={relationalModel.rhsExp} callBack={callBack} isRoot={false} />;
         operator = relationalModel.operator;
+        // suggestion = <Suggestions model={model} kind={"comparison"} operator={false} />;
     }
 
-    // const onClickWholeExpression = () => {
-    //     callback(model);
-    // };
-
-    const onClickOnSuggestion = (model: Expression, kind: string) => {
-        console.log(model)
-        addExpression(model, kind);
-        console.log(model)
-    }
+    const onClickOnExpression = (suggestions:string[]) => {
+        // callback(model);
+        callBack(suggestions)
+    };
 
     return (
         <span>
-            {/* <button onClick={() => onClickOnSuggestion(model, "comparision")}>Relational</button> */}
-            <button className="template-button">{lhs}</button>
+            <button className="template-button" onClick={()=>onClickOnExpression(getSuggestionsBasedOnExpressionKind("relational"))}>{lhs}</button>
             <span className="App-expression-block App-expression-block-element">
                 <button className="template-button">operator</button>
             </span>

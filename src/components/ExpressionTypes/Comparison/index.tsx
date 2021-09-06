@@ -4,7 +4,7 @@ import { ExpressionComponent } from "../../Expression";
 
 interface ComparisionProps {
     model: Expression
-    callback: (exp: Expression) => void
+    callback: (exp: string[]) => void
 }
 
 export function ComparisionC(props: ComparisionProps) {
@@ -14,12 +14,12 @@ export function ComparisionC(props: ComparisionProps) {
     
     if (model.kind === "Comparison" ) {
         const comparisonModel: Comparison = model.expressionType as Comparison;
-        lhs = <ExpressionComponent model={comparisonModel.lhsExp} callback={callback} isRoot={false}/>;
-        rhs = <ExpressionComponent model={comparisonModel.rhsExp} callback={callback} isRoot={false}/>;
+        lhs = <ExpressionComponent model={comparisonModel.lhsExp} callBack={callback} isRoot={false}/>;
+        rhs = <ExpressionComponent model={comparisonModel.rhsExp} callBack={callback} isRoot={false}/>;
     }
 
     const onClickWholeExpression = () => {
-        callback(model);
+        // callback(model);
     };
 
     return (

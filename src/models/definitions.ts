@@ -22,25 +22,25 @@ export interface Variable {
 
 export interface Comparison {
     lhsExp: Expression,
-    operator: ">" | ">=" | "<" | "<=" | "==" | "!="
+    operator: ">" | ">=" | "<" | "<=" | "==" | "!=" | "operator"
     rhsExp: Expression
 }
 
 export interface Relational extends Comparison {
     lhsExp: Expression
-    operator: ">" | ">=" | "<" | "<="
+    operator: ">" | ">=" | "<" | "<=" | "operator"
     rhsExp: Expression
 }
 
 export interface Equality extends Comparison {
     lhsExp: Expression
-    operator: "==" | "!="
+    operator: "==" | "!=" | "operator"
     rhsExp: Expression
 }
 
 export interface Arithmatic {
     lhsOperand: Expression
-    operator: "*" | "/" | "%" | "+" | "-"
+    operator: "*" | "/" | "%" | "+" | "-" | "operator"
     rhsOperand: Expression
 }
 

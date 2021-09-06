@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import {Expression, Comparison} from '../../models/definitions'
-import { getExpressionTypeComponent } from "../../utils";
+import { getExpressionTypeComponent, getSuggestionsBasedOnExpressionKind } from "../../utils";
+import { addExpression } from "../../utils/utils";
 import { ExpressionComponent } from "../Expression";
 
 import '../MainContainer/styles.css';
@@ -44,64 +45,64 @@ import { Suggestions } from "../Suggestions";
 // }
 
 // if (var1 + var2) > (var10 + var20)
-export const sampleModel: Expression = {
-    type: ["boolean"],
-    kind: "RelationalC",
-    expressionType: {
-        lhsExp: {
-            type: ["int", "float", "decimal"],
-            kind: "ArithmaticC",
-            expressionType: {
-                lhsOperand: {
-                    type: ["int", "float", "decimal", "string"],
-                    kind: "VariableC",
-                    expressionType: {
-                        name: "var1"
-                    }
-                },
-                operator: "+",
-                rhsOperand: {
-                    type: ["int", "float", "decimal", "string"],
-                    kind: "VariableC",
-                    expressionType: {
-                        name: "var2"
-                    }
-                }
-            }
-        },
-        operator: ">",
-        rhsExp: {
-            type: ["int", "float", "decimal"],
-            kind: "ArithmaticC",
-            expressionType: {
-                lhsOperand: {
-                    type: ["int", "float", "decimal", "string"],
-                    kind: "VariableC",
-                    expressionType: {
-                        name: "var10"
-                    }
-                },
-                operator: "+",
-                rhsOperand: {
-                    type: ["int", "float", "decimal", "string"],
-                    kind: "VariableC",
-                    expressionType: {
-                        name: "var20"
-                    }
-                }
-            }
-        }
-    }
-}
-
-// if false
 // export const sampleModel: Expression = {
 //     type: ["boolean"],
-//     kind: "LiteralC",
-//     // expressionType: {
-//     //     value: "false"
-//     // }
+//     kind: "RelationalC",
+//     expressionType: {
+//         lhsExp: {
+//             type: ["int", "float", "decimal"],
+//             kind: "ArithmaticC",
+//             expressionType: {
+//                 lhsOperand: {
+//                     type: ["int", "float", "decimal", "string"],
+//                     kind: "VariableC",
+//                     expressionType: {
+//                         name: "var1"
+//                     }
+//                 },
+//                 operator: "+",
+//                 rhsOperand: {
+//                     type: ["int", "float", "decimal", "string"],
+//                     kind: "VariableC",
+//                     expressionType: {
+//                         name: "var2"
+//                     }
+//                 }
+//             }
+//         },
+//         operator: ">",
+//         rhsExp: {
+//             type: ["int", "float", "decimal"],
+//             kind: "ArithmaticC",
+//             expressionType: {
+//                 lhsOperand: {
+//                     type: ["int", "float", "decimal", "string"],
+//                     kind: "VariableC",
+//                     expressionType: {
+//                         name: "var10"
+//                     }
+//                 },
+//                 operator: "+",
+//                 rhsOperand: {
+//                     type: ["int", "float", "decimal", "string"],
+//                     kind: "VariableC",
+//                     expressionType: {
+//                         name: "var20"
+//                     }
+//                 }
+//             }
+//         }
+//     }
 // }
+
+// if false
+export const sampleModel: Expression = {
+    type: ["boolean"],
+    kind: "LiteralC",
+    // expressionType: {
+    //     value: "false"
+    // }
+}
 
 // // if 30 > 40
 // export const sampleModel: Expression = {
@@ -111,9 +112,9 @@ export const sampleModel: Expression = {
 //         lhsExp: {
 //             type: ["int"],
 //             kind: "LiteralC",
-//             expressionType: {
-//                 value: "30"
-//             }
+//             // expressionType: {
+//             //     value: "30"
+//             // }
 //         },
 //         operator: ">",
 //         rhsExp: {
@@ -197,10 +198,13 @@ export function LeftPane() {
     //     }
     // }
 
-    const onClickButton = () => {
-        // getExpressionTypeComponent(sampleModel)
-    }
+    const [suggestionList, SetSuggestionsList] = useState(getSuggestionsBasedOnExpressionKind("LiteralC"));
+    const [currentModel, SetCurrentModel] = useState(sampleModel);
 
+    const onClickButton = (suggestions:string[], model: Expression) => {
+        SetSuggestionsList(suggestions)
+        SetCurrentModel(model)
+    }
 
     // console.log(x);
     console.log(sampleModel);
@@ -209,11 +213,11 @@ export function LeftPane() {
             <h3 className="App-leftPane-heading">Conditional Statement</h3>
             <div className="App-statement-template-editor">
                 <div className="App-statement-template-editor-inner">
-                    <ExpressionComponent model={sampleModel} callback={onClickButton} isRoot={true}/>
+                    <ExpressionComponent model={currentModel} callBack={onClickButton} isRoot={true}/>
                 </div>
             </div>
             <div className="App-context-sensitivePane">
-                <Suggestions kind={"comparison"} operator={false}/>
+                <Suggestions model={currentModel} suggestions={suggestionList} operator={false}/>
             </div>
 
         </div>
