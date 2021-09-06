@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { callbackify } from "util";
+import React from "react";
 import { Expression } from "../../models/definitions";
 import { addExpression, addOperator } from "../../utils/utils";
 
@@ -25,18 +24,15 @@ export function Suggestions(props: SuggestionsProps) {
         } else {
             addExpression(model, kind);
             callBack(model)
-            console.log("++++++++++++++++after++++++++++++++++++++")
-            console.log(model)
-            console.log(kind)
-            console.log("++++++++++++++++after++++++++++++++++++++")
+
         }
 
     }
 
     return (
         <div className="App-suggestion-block">
-            {suggestions.map(suggetion => (
-                <button className="suggestion-buttons" onClick={() => onClickSuggestion(suggetion, operator, model)}>{suggetion}</button>
+            {suggestions.map((suggetion, index) => (
+                <button className="suggestion-buttons" key={index} onClick={() => onClickSuggestion(suggetion, operator, model)}>{suggetion.substring(0 , suggetion.length - 1)}</button>
             ))}
         </div>
     );

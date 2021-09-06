@@ -12,13 +12,7 @@ interface ExpressionComponentProps {
 export function ExpressionComponent(props: ExpressionComponentProps) {
     const { model, callBack, isRoot } = props;
 
-    console.log(`==================== ExpressionComponent ====================`)
-    console.log(model)
     const component = getExpressionTypeComponent(model, callBack);
-
-    // const onClickWholeExpression = () => {
-    //     callback(model);
-    // };
 
     return (
         <span>
@@ -50,5 +44,4 @@ export function ExpressionComponent(props: ExpressionComponentProps) {
             }              
         </span>
     );
-
 }

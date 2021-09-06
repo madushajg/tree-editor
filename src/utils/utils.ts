@@ -1,7 +1,5 @@
 
-import { Arithmatic, Comparison, Conditional, Equality, Expression, Literal, Relational, TypeCheck, Variable } from '../models/definitions';
-
-
+import { Arithmetic, Conditional, Equality, Expression, Literal, Relational, TypeCheck, Variable } from '../models/definitions';
 
 export function deleteExpression (model: Expression ) {
     delete model.expressionType;
@@ -18,7 +16,7 @@ export function addExpression (model: Expression, kind: string, value?: any ){
     var expressionTemplate: TypeCheck
     | Conditional
     | Literal
-    | Arithmatic
+    | Arithmetic
     | Variable
     | Relational
     | Equality
@@ -36,7 +34,7 @@ export function addExpression (model: Expression, kind: string, value?: any ){
     } else if (kind === 'ConditionalC') {
         expressionTemplate = createConditional();
     } else if (kind === 'ArithmeticC') {
-        expressionTemplate = createArithmatic(value);
+        expressionTemplate = createArithmetic(value);
     } else if( kind === 'VariableC') {
         expressionTemplate = createVariable(value);
     } else {
@@ -75,7 +73,7 @@ function createEquality (operator:  "==" | "!=" | "operator"): Equality {
             rhsExp: {type: ["int", "float", "decimal"], kind: "LiteralC",} };
 }
 
-function createArithmatic ( operator: "*" | "/" | "%" | "+" | "-" | "operator"): Arithmatic {
+function createArithmetic ( operator: "*" | "/" | "%" | "+" | "-" | "operator"): Arithmetic {
     return { lhsOperand : {type: ["int", "float", "decimal"], kind: "LiteralC",},
             operator: operator,
             rhsOperand: {type: ["int", "float", "decimal"], kind: "LiteralC",} };

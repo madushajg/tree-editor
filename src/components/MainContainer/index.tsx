@@ -1,7 +1,7 @@
 import React from 'react';
 import { RightPane } from '../RightPane';
 import { LeftPane } from '../LeftPane';
-import image2 from './base.png';
+import baseImage from './base.png';
 
 import './styles.css';
 import { Expression } from '../../models/definitions';
@@ -13,7 +13,7 @@ import { Expression } from '../../models/definitions';
 //     expressionType: {
 //         lhsExp: {
 //             type: ["int", "float", "decimal"],
-//             kind: "ArithmaticC",
+//             kind: "ArithmeticC",
 //             expressionType: {
 //                 lhsOperand: {
 //                     type: ["int", "float", "decimal", "string"],
@@ -50,7 +50,7 @@ import { Expression } from '../../models/definitions';
 //     expressionType: {
 //         lhsExp: {
 //             type: ["int", "float", "decimal"],
-//             kind: "ArithmaticC",
+//             kind: "ArithmeticC",
 //             expressionType: {
 //                 lhsOperand: {
 //                     type: ["int", "float", "decimal", "string"],
@@ -72,7 +72,7 @@ import { Expression } from '../../models/definitions';
 //         operator: ">",
 //         rhsExp: {
 //             type: ["int", "float", "decimal"],
-//             kind: "ArithmaticC",
+//             kind: "ArithmeticC",
 //             expressionType: {
 //                 lhsOperand: {
 //                     type: ["int", "float", "decimal", "string"],
@@ -135,7 +135,7 @@ export function MainContainer() {
 
     return (
         <div className="App">
-            <img src={image2} alt="Flowers in Chania" width='100%'/>
+            <img src={baseImage} alt="base" width='100%'/>
             <div className="App-tree-editor">
                 <LeftPane model={sampleModel} currentModel={currentModel}/>
                 <div className="vl"></div>
@@ -143,5 +143,4 @@ export function MainContainer() {
             </div>
         </div>
     )
-
 }

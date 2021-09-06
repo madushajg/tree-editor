@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import {Expression, Comparison} from '../../models/definitions'
-import { getExpressionTypeComponent, getSuggestionsBasedOnExpressionKind } from "../../utils";
-import { addExpression } from "../../utils/utils";
+import {Expression} from '../../models/definitions'
+import { getSuggestionsBasedOnExpressionKind } from "../../utils";
 import { ExpressionComponent } from "../Expression";
-import { sampleModel } from "../MainContainer";
 
 import '../MainContainer/styles.css';
 import { Suggestions } from "../Suggestions";
@@ -34,8 +32,6 @@ export function LeftPane(props: ModelProps) {
         SetIsOperator(!isOperator)
     }
 
-    // console.log(x);
-    console.log(model);
     return (
         <div className="App-leftPane">
             <h3 className="App-leftPane-heading">Conditional Statement</h3>
