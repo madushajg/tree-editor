@@ -26,13 +26,13 @@ export function ArithmeticC(props: ArithmeticProps) {
     return (
         <span>
             {/* {"("} */}
-            <button className="template-button">{lhs}</button>
-            {/* <button className="template-button" onClick={onClickOnExpression}>{lhs}</button> */}
+            {/* <button className="template-button">{lhs}</button> */}
+            <button className="template-button" onClick={onClickOnExpression}>{lhs}</button>
             <span className="App-expression-block App-expression-block-element">
                 <button className="template-button">operators</button>    
             </span>
-            <button className="template-button">{rhs}</button>
-            {/* <button className="template-button" onClick={onClickOnExpression}>{rhs}</button> */}
+            {/* <button className="template-button">{rhs}</button> */}
+            <button className="template-button" onClick={onClickOnExpression}>{rhs}</button>
             {/* {")"} */}
         </span>
     );
