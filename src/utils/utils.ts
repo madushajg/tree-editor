@@ -7,6 +7,12 @@ export function deleteExpression (model: Expression ) {
     delete model.expressionType;
 }
 
+export function addOperator (model: Expression, kind: string) {
+    let expression : any = model.expressionType
+    expression.operator = kind
+    console.log(expression.operator)
+}
+
 export function addExpression (model: Expression, kind: string, value?: any ){
     model['kind'] = kind;
     var expressionTemplate: TypeCheck
@@ -71,7 +77,7 @@ function createEquality (operator:  "==" | "!=" | "operator"): Equality {
 
 function createArithmatic ( operator: "*" | "/" | "%" | "+" | "-" | "operator"): Arithmatic {
     return { lhsOperand : {type: ["int", "float", "decimal"], kind: "LiteralC",},
-            operator: "operator",
+            operator: operator,
             rhsOperand: {type: ["int", "float", "decimal"], kind: "LiteralC",} };
 
 }
@@ -128,9 +134,9 @@ export const TypesForExpressionKind : {[key: string]: string[]} = {
 }
 
 export const OperatorsForExpressionKind : {[key:string]: string[]} = {
-    arithmetic : ["+","-","*","/","%"],
-    logical : ["&&","||"],
-    unary: ["+","-","!","~"],
+    ArithmeticC : ["+","-","*","/","%"],
+    LogicalC : ["&&","||"],
+    UnaryC: ["+","-","!","~"],
     comparison: [">","<",">=","<=","==","!=","===","!=="],
     shift : ["<<",">>",">>>"],
     range : ["...","..<"]
