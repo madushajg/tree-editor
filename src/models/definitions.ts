@@ -2,18 +2,18 @@ export interface Expression {
     type: ("string" | "int" | "float" | "decimal" | "boolean")[],
     kind: string,
     expressionType?:
-      | Equality
-      | Relational
-      | TypeCheck
-      | Conditional
-      | Literal
-      | Logical
-      | Arithmetic
-      | Variable
-      | DefaultBoolean
-      | Expression
-  }
-  
+    | Equality
+    | Relational
+    | TypeCheck
+    | Conditional
+    | Literal
+    | Logical
+    | Arithmetic
+    | Variable
+    | DefaultBoolean
+    | Expression
+}
+
 export interface Literal {
     value: any
 }
@@ -22,7 +22,7 @@ export interface Variable {
     name: string
 }
 
-export interface DefaultBoolean {}
+export interface DefaultBoolean { }
 
 export interface Comparison {
     lhsExp: Expression,

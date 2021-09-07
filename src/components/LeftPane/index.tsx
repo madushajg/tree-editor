@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Expression} from '../../models/definitions'
+import { Expression } from '../../models/definitions'
 import { getSuggestionsBasedOnExpressionKind } from "../../utils";
 import { ExpressionComponent } from "../Expression";
 import * as c from "../../constants";
@@ -10,17 +10,17 @@ import { Suggestions } from "../Suggestions";
 
 interface ModelProps {
     model: Expression
-    currentModel: {model: Expression}
+    currentModel: { model: Expression }
 }
 
 export function LeftPane(props: ModelProps) {
-    const {model, currentModel} = props;
+    const { model, currentModel } = props;
 
     const [suggestionList, SetSuggestionsList] = useState(getSuggestionsBasedOnExpressionKind(c.DEFAULT_BOOL));
     const [isSuggestionClicked, SetIsSuggestionClicked] = useState(false);
     const [isOperator, SetIsOperator] = useState(false);
 
-    const onClickExpressionButton = (suggestions:string[], model: Expression, operator:boolean) => {
+    const onClickExpressionButton = (suggestions: string[], model: Expression, operator: boolean) => {
         currentModel.model = model
         SetSuggestionsList(suggestions)
         SetIsSuggestionClicked(false)
@@ -38,11 +38,11 @@ export function LeftPane(props: ModelProps) {
             <h3 className="App-leftPane-heading">Conditional Statement</h3>
             <div className="App-statement-template-editor">
                 <div className="App-statement-template-editor-inner">
-                    <ExpressionComponent model={model} callBack={onClickExpressionButton} isRoot={true}/>
+                    <ExpressionComponent model={model} callBack={onClickExpressionButton} isRoot={true} />
                 </div>
             </div>
             <div className="App-context-sensitivePane">
-                <Suggestions model={currentModel.model} suggestions={suggestionList} operator={isOperator} callBack={onClickSuggestionButton}/>
+                <Suggestions model={currentModel.model} suggestions={suggestionList} operator={isOperator} callBack={onClickSuggestionButton} />
             </div>
 
         </div>

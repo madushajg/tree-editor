@@ -8,14 +8,14 @@ interface ComparisionProps {
 }
 
 export function ComparisionC(props: ComparisionProps) {
-    const {model, callback} = props;
+    const { model, callback } = props;
     let lhs: any;
     let rhs: any;
-    
-    if (model.kind === "Comparison" ) {
+
+    if (model.kind === "Comparison") {
         const comparisonModel: Comparison = model.expressionType as Comparison;
-        lhs = <ExpressionComponent model={comparisonModel.lhsExp} callBack={callback} isRoot={false}/>;
-        rhs = <ExpressionComponent model={comparisonModel.rhsExp} callBack={callback} isRoot={false}/>;
+        lhs = <ExpressionComponent model={comparisonModel.lhsExp} callBack={callback} isRoot={false} />;
+        rhs = <ExpressionComponent model={comparisonModel.rhsExp} callBack={callback} isRoot={false} />;
     }
 
     const onClickWholeExpression = () => {

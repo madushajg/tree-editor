@@ -16,7 +16,7 @@ export function Suggestions(props: SuggestionsProps) {
 
     const onClickSuggestion = (kind: string, operator: boolean, model: Expression) => {
         if (operator) {
-            addOperator(model,kind)
+            addOperator(model, kind)
         } else {
             addExpression(model, kind);
         }

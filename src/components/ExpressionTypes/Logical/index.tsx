@@ -10,13 +10,13 @@ interface logicalProps {
 }
 
 export function LogicalC(props: logicalProps) {
-    const {model, callBack} = props;
+    const { model, callBack } = props;
     let lhsExpression: any;
     let rhsExpression: any;
     let lhs: any;
-    let rhs: any;    
-    
-    if (model.kind === c.LOGICAL ) {
+    let rhs: any;
+
+    if (model.kind === c.LOGICAL) {
         const logicalModel: Logical = model.expressionType as Logical;
         lhsExpression = logicalModel.lhsComponent
         rhsExpression = logicalModel.rhsComponent
@@ -24,18 +24,18 @@ export function LogicalC(props: logicalProps) {
         rhs = <ExpressionComponent model={rhsExpression} callBack={callBack} isRoot={false} />;
     }
 
-    const onClickOnExpression = (model: Expression, e:any) => {
+    const onClickOnExpression = (model: Expression, e: any) => {
         e.stopPropagation()
         callBack(getSuggestionsBasedOnExpressionKind(c.LOGICAL), model)
     };
 
     return (
         <span>
-            <button className="template-button" onClick={(e)=>onClickOnExpression(lhsExpression, e)}>{lhs}</button>
+            <button className="template-button" onClick={(e) => onClickOnExpression(lhsExpression, e)}>{lhs}</button>
             <span className="App-expression-block App-expression-block-element">
                 <button className="template-button">operator</button>
             </span>
-            <button className="template-button" onClick={(e)=>onClickOnExpression(rhsExpression, e)}>{rhs}</button>
+            <button className="template-button" onClick={(e) => onClickOnExpression(rhsExpression, e)}>{rhs}</button>
         </span>
     );
 }

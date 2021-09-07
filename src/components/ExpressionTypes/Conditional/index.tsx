@@ -10,15 +10,15 @@ interface ConditionalProps {
 }
 
 export function ConditionalC(props: ConditionalProps) {
-    const {model, callBack} = props;
+    const { model, callBack } = props;
     let conditionExpression: any;
     let trueExpression: any;
     let falseExpression: any;
     let conditionExpressionComponent: any;
     let trueExpressionComponent: any;
     let falseExpressionComponent: any;
-    
-    if (model.kind === c.CONDITIONAL ) {
+
+    if (model.kind === c.CONDITIONAL) {
         const conditionalModel: Conditional = model.expressionType as Conditional;
         conditionExpression = conditionalModel.condition
         trueExpression = conditionalModel.trueExpr
@@ -28,22 +28,22 @@ export function ConditionalC(props: ConditionalProps) {
         falseExpressionComponent = <ExpressionComponent model={falseExpression} callBack={callBack} isRoot={false} />;
     }
 
-    const onClickOnExpression = (model: Expression, e:any) => {
+    const onClickOnExpression = (model: Expression, e: any) => {
         e.stopPropagation()
         callBack(getSuggestionsBasedOnExpressionKind(c.CONDITIONAL), model)
     };
 
     return (
         <span>
-            <button className="template-button" onClick={(e)=>onClickOnExpression(conditionExpression, e)}>{conditionExpressionComponent}</button>
+            <button className="template-button" onClick={(e) => onClickOnExpression(conditionExpression, e)}>{conditionExpressionComponent}</button>
             <span className="App-expression-block App-expression-block-disabled">
                 &nbsp;&nbsp;?&nbsp;&nbsp;
             </span>
-            <button className="template-button" onClick={(e)=>onClickOnExpression(trueExpression, e)}>{trueExpressionComponent}</button>
+            <button className="template-button" onClick={(e) => onClickOnExpression(trueExpression, e)}>{trueExpressionComponent}</button>
             <span className="App-expression-block App-expression-block-disabled">
                 &nbsp;&nbsp;:&nbsp;&nbsp;
             </span>
-            <button className="template-button" onClick={(e)=>onClickOnExpression(falseExpression, e)}>{falseExpressionComponent}</button>
+            <button className="template-button" onClick={(e) => onClickOnExpression(falseExpression, e)}>{falseExpressionComponent}</button>
         </span>
     );
 }
