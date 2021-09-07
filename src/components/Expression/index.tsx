@@ -4,7 +4,7 @@ import {getExpressionTypeComponent} from "../../utils";
 
 interface ExpressionComponentProps {
     model: Expression
-    callBack: (suggestions: string[], model: Expression) => void
+    callBack: (suggestions: string[], model: Expression, operator: boolean) => void
     isRoot: boolean
 }
 
@@ -39,7 +39,7 @@ export function ExpressionComponent(props: ExpressionComponentProps) {
                     &nbsp;&nbsp;&nbsp;{"..."}
                     <br/>
                     {"}"}
-                    {"}"}
+                    {/* {"}"} */}
                 </span> : null
             }              
         </span>

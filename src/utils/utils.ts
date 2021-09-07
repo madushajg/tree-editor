@@ -1,8 +1,14 @@
 
+import { ArithmeticC, RelationalC } from '../components/ExpressionTypes';
 import { Arithmetic, Conditional, Equality, Expression, Literal, Relational, TypeCheck, Variable } from '../models/definitions';
 
 export function deleteExpression (model: Expression ) {
     delete model.expressionType;
+}
+
+export function addOperator (model: Expression, kind: any) {
+    let expression : any = model.expressionType
+    expression.operator = kind
 }
 
 export function addExpression (model: Expression, kind: string, value?: any ){
@@ -126,9 +132,10 @@ export const TypesForExpressionKind : {[key: string]: string[]} = {
 }
 
 export const OperatorsForExpressionKind : {[key:string]: string[]} = {
-    arithmetic : ["+","-","*","/","%"],
-    logical : ["&&","||"],
-    unary: ["+","-","!","~"],
+    ArithmeticC : ["+ ","- ","* ","/ ","% "],
+    RelationalC : ["> " , ">= " , "< " , "<= "],
+    LogicalC : ["&&","||"],
+    UnaryC: ["+","-","!","~"],
     comparison: [">","<",">=","<=","==","!=","===","!=="],
     shift : ["<<",">>",">>>"],
     range : ["...","..<"]

@@ -18,11 +18,13 @@ export function LeftPane(props: ModelProps) {
 
     const [suggestionList, SetSuggestionsList] = useState(getSuggestionsBasedOnExpressionKind("LiteralC"));
     const [isSuggestionClicked, SetIsSuggestionClicked] = useState(false);
+    const [isOperator, SetIsOperator] = useState(false);
 
-    const onClickExpressionButton = (suggestions:string[], model: Expression) => {
+    const onClickExpressionButton = (suggestions:string[], model: Expression, operator:boolean) => {
         currentModel.model = model
         SetSuggestionsList(suggestions)
         SetIsSuggestionClicked(false)
+        SetIsOperator(operator)
     }
 
     const onClickSuggestionButton = (cmodel: Expression) => {
@@ -36,6 +38,7 @@ export function LeftPane(props: ModelProps) {
         SetIsSuggestionClicked(!isSuggestionClicked)
     }
 
+
     return (
         <div className="App-leftPane">
             <h3 className="App-leftPane-heading">Conditional Statement</h3>
@@ -45,7 +48,7 @@ export function LeftPane(props: ModelProps) {
                 </div>
             </div>
             <div className="App-context-sensitivePane">
-                <Suggestions model={currentModel.model} suggestions={suggestionList} operator={false} callBack={onClickSuggestionButton}/>
+                <Suggestions model={currentModel.model} suggestions={suggestionList} operator={isOperator} callBack={onClickSuggestionButton}/>
             </div>
 
         </div>
