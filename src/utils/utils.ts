@@ -133,6 +133,7 @@ export const TypesForExpressionKind : {[key: string]: string[]} = {
 
 export const OperatorsForExpressionKind : {[key:string]: string[]} = {
     ArithmeticC : ["+ ","- ","* ","/ ","% "],
+    RelationalC : ["> " , ">= " , "< " , "<= "],
     LogicalC : ["&&","||"],
     UnaryC: ["+","-","!","~"],
     comparison: [">","<",">=","<=","==","!=","===","!=="],

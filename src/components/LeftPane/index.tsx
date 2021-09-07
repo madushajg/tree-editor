@@ -29,7 +29,7 @@ export function LeftPane(props: ModelProps) {
     const onClickSuggestionButton = (model: Expression) => {
         currentModel.model = model
         SetIsSuggestionClicked(!isSuggestionClicked)
-        SetIsOperator(false)
+        //SetIsOperator(false)
     }
 
     return (
