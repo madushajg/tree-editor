@@ -1,14 +1,19 @@
 
+import { ArithmeticC, RelationalC } from '../components/ExpressionTypes';
 import { Arithmetic, Conditional, Equality, Expression, Literal, Relational, TypeCheck, Variable } from '../models/definitions';
 
 export function deleteExpression (model: Expression ) {
     delete model.expressionType;
 }
 
-export function addOperator (model: Expression, kind: string) {
+export function addOperator (model: Expression, kind: any) {
+    // console.log("============addOperator model")
+    // console.log(model)
     let expression : any = model.expressionType
     expression.operator = kind
-    console.log(expression.operator)
+    // (model.expressionType as Arithmetic).operator  = kind
+    // model.operator = kind
+    // console.log(expression.operator)
 }
 
 export function addExpression (model: Expression, kind: string, value?: any ){

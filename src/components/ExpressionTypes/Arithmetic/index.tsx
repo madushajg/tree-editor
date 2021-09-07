@@ -14,17 +14,21 @@ export function ArithmeticC(props: ArithmeticProps) {
     let rhsExpression: any;
     let lhs: any;
     let rhs: any;
+    let arithmeticModel : Arithmetic;
+    let operator: any;
     
     if (model.kind === "ArithmeticC" ) {
-        const arithmeticModel: Arithmetic = model.expressionType as Arithmetic;
+        arithmeticModel = model.expressionType as Arithmetic;
         lhsExpression = arithmeticModel.lhsOperand
         rhsExpression = arithmeticModel.rhsOperand
+        operator = arithmeticModel.operator
         lhs = <ExpressionComponent model={lhsExpression} callBack={callBack} isRoot={false}/>;
         rhs = <ExpressionComponent model={rhsExpression} callBack={callBack} isRoot={false}/>;
     }
 
 
-    const onClickOperator = () => {
+    const onClickOperator = (e: any) => {
+        e.stopPropagation()
         callBack(getOperatorSuggestions("ArithmeticC"), model, true)
         console.log("operator model")
         console.log(model)
@@ -41,7 +45,7 @@ export function ArithmeticC(props: ArithmeticProps) {
             {/* <button className="template-button">{lhs}</button> */}
             <span className="template-button" onClick={(e)=>onClickOnExpression(lhsExpression, e)}>{lhs}</span>
             <span className="App-expression-block App-expression-block-element">
-                <button className="template-button" onClick={()=> onClickOperator()}>operators</button>
+                <button className="template-button" onClick={(e)=> onClickOperator(e)}>{operator ? operator: "operator"}</button>
             </span>
             {/* <button className="template-button">{rhs}</button> */}
             <span className="template-button" onClick={(e)=>onClickOnExpression(rhsExpression, e)}>{rhs}</span>

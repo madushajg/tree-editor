@@ -36,8 +36,11 @@ export function LeftPane(props: ModelProps) {
         console.log(model)
         console.log("==========onClickSuggestionButton===========")
         SetIsSuggestionClicked(!isSuggestionClicked)
+       
         //SetIsOperator(false)
     }
+    // console.log(isSuggestionClicked)
+    // console.log(model)
 
     return (
         <div className="App-leftPane">

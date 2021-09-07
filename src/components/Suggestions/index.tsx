@@ -1,5 +1,5 @@
 import React from "react";
-import { Expression } from "../../models/definitions";
+import { Arithmetic, Expression } from "../../models/definitions";
 import { addExpression, addOperator } from "../../utils/utils";
 
 import '../MainContainer/styles.css';
@@ -17,7 +17,12 @@ export function Suggestions(props: SuggestionsProps) {
     const onClickSuggestion = (kind: string, operator: boolean, model: Expression) => {
         if (operator) {
             console.log("==+++++++ onclick on operator")
-            addOperator(model, kind);
+            // if (model.kind === "ArithmeticC" ) {
+            //     let arithmeticModel : Arithmetic = model.expressionType as Arithmetic;
+            //     addOperator(arithmeticModel, kind);
+            // }
+            addOperator(model,kind)
+           
             console.log("updated operator model", model)
             callBack(model)
 
