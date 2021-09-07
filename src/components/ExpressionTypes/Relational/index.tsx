@@ -31,13 +31,13 @@ export function RelationalC(props: RelationalProps) {
 
     return (
         <span>
-            {/* <button className="template-button" onClick={()=>onClickOnExpression(lhsExpression)}>{lhs}</button> */}
-            <span className="template-button" onClick={(e)=>onClickOnExpression(lhsExpression, e)}>{lhs}</span>
+            <button className="template-button" onClick={(e)=>onClickOnExpression(lhsExpression, e)}>{lhs}</button>
+            {/* <span className="template-button" onClick={(e)=>onClickOnExpression(lhsExpression, e)}>{lhs}</span> */}
             <span className="App-expression-block App-expression-block-element">
                 <button className="template-button">operator</button>
             </span>
-            {/* <button className="template-button" onClick={()=>onClickOnExpression(rhsExpression)}>{rhs}</button> */}
-            <span className="template-button" onClick={(e)=>onClickOnExpression(rhsExpression, e)}>{rhs}</span>
+            <button className="template-button" onClick={(e)=>onClickOnExpression(rhsExpression, e)}>{rhs}</button>
+            {/* <span className="template-button" onClick={(e)=>onClickOnExpression(rhsExpression, e)}>{rhs}</span> */}
         </span>
     );
 }

@@ -16,7 +16,7 @@ interface ModelProps {
 export function LeftPane(props: ModelProps) {
     const {model, currentModel} = props;
 
-    const [suggestionList, SetSuggestionsList] = useState(getSuggestionsBasedOnExpressionKind(c.LITERAL));
+    const [suggestionList, SetSuggestionsList] = useState(getSuggestionsBasedOnExpressionKind(c.DEFAULT_BOOL));
     const [isSuggestionClicked, SetIsSuggestionClicked] = useState(false);
     const [isOperator, SetIsOperator] = useState(false);
 

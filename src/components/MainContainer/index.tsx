@@ -95,12 +95,17 @@ import { Expression } from '../../models/definitions';
 // }
 
 // if false
+// export const sampleModel: Expression = {
+//     type: ["boolean"],
+//     kind: "LiteralC",
+//     // expressionType: {
+//     //     value: "false"
+//     // }
+// }
+
 export const sampleModel: Expression = {
     type: ["boolean"],
-    kind: "LiteralC",
-    // expressionType: {
-    //     value: "false"
-    // }
+    kind: "DefaultBooleanC"
 }
 
 // // if 30 > 40

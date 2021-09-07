@@ -9,6 +9,7 @@ export interface Expression {
       | Literal
       | Arithmetic
       | Variable
+      | DefaultBoolean
       | Expression
   }
   
@@ -19,6 +20,8 @@ export interface Literal {
 export interface Variable {
     name: string
 }
+
+export interface DefaultBoolean {}
 
 export interface Comparison {
     lhsExp: Expression,

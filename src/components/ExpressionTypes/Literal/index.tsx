@@ -1,6 +1,6 @@
 import React from "react";
 import { Expression, Literal } from "../../../models/definitions";
-import { getSuggestionsBasedOnExpressionKind } from "../../../utils";
+// import { getSuggestionsBasedOnExpressionKind } from "../../../utils";
 import * as c from "../../../constants";
 
 interface LiteralProps {
@@ -12,10 +12,10 @@ export function LiteralC(props: LiteralProps) {
     const {model, callBack} = props;
     let value: any;
 
-    const onClickOnExpression = (e: any) => {
-        e.stopPropagation()
-        callBack(getSuggestionsBasedOnExpressionKind(c.LITERAL), model)
-    };
+    // const onClickOnExpression = (e: any) => {
+    //     e.stopPropagation()
+    //     callBack(getSuggestionsBasedOnExpressionKind(c.LITERAL), model)
+    // };
 
     
     if (model.kind === c.LITERAL ) {
@@ -25,9 +25,10 @@ export function LiteralC(props: LiteralProps) {
 
     return (
         <span className="App-expression-block App-expression-block-element">
-            <button className="template-button" onClick={(e) => onClickOnExpression(e)}>
+            <input type="text" id="literal" name="literal" value={value}></input>
+            {/* <button className="template-button" onClick={(e) => onClickOnExpression(e)}>
                 {value}
-            </button>
+            </button> */}
         </span>
     );
 }
