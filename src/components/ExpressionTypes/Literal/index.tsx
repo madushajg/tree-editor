@@ -1,6 +1,7 @@
 import React from "react";
 import { Expression, Literal } from "../../../models/definitions";
 import { getSuggestionsBasedOnExpressionKind } from "../../../utils";
+import * as c from "../../../constants";
 
 interface LiteralProps {
     model: Expression
@@ -13,11 +14,11 @@ export function LiteralC(props: LiteralProps) {
 
     const onClickOnExpression = (e: any) => {
         e.stopPropagation()
-        callBack(getSuggestionsBasedOnExpressionKind("LiteralC"), model)
+        callBack(getSuggestionsBasedOnExpressionKind(c.LITERAL), model)
     };
 
     
-    if (model.kind === "LiteralC" ) {
+    if (model.kind === c.LITERAL ) {
         const literalModel: Literal = model.expressionType as Literal;
         value = literalModel?.value ? literalModel.value : "expression";
     }

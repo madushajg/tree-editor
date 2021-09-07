@@ -39,7 +39,6 @@ export function ExpressionComponent(props: ExpressionComponentProps) {
                     &nbsp;&nbsp;&nbsp;{"..."}
                     <br/>
                     {"}"}
-                    {/* {"}"} */}
                 </span> : null
             }              
         </span>

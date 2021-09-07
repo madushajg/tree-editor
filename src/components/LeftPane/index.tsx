@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {Expression} from '../../models/definitions'
 import { getSuggestionsBasedOnExpressionKind } from "../../utils";
 import { ExpressionComponent } from "../Expression";
-import { sampleModel } from "../MainContainer";
+import * as c from "../../constants";
 
 import '../MainContainer/styles.css';
 import { Suggestions } from "../Suggestions";
@@ -16,7 +16,7 @@ interface ModelProps {
 export function LeftPane(props: ModelProps) {
     const {model, currentModel} = props;
 
-    const [suggestionList, SetSuggestionsList] = useState(getSuggestionsBasedOnExpressionKind("LiteralC"));
+    const [suggestionList, SetSuggestionsList] = useState(getSuggestionsBasedOnExpressionKind(c.LITERAL));
     const [isSuggestionClicked, SetIsSuggestionClicked] = useState(false);
     const [isOperator, SetIsOperator] = useState(false);
 
@@ -27,14 +27,8 @@ export function LeftPane(props: ModelProps) {
         SetIsOperator(operator)
     }
 
-    const onClickSuggestionButton = (cmodel: Expression) => {
-        currentModel.model = cmodel
-        console.log("==========onClickSuggestionButton===========")
-        console.log("===currentModel===")
-        console.log(currentModel.model)
-        console.log("===model===")
-        console.log(model)
-        console.log("==========onClickSuggestionButton===========")
+    const onClickSuggestionButton = (model: Expression) => {
+        currentModel.model = model
         SetIsSuggestionClicked(!isSuggestionClicked)
     }
 

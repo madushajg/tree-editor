@@ -2,6 +2,7 @@ import React from "react";
 import { Relational, Expression } from "../../../models/definitions";
 import { getSuggestionsBasedOnExpressionKind } from "../../../utils";
 import { ExpressionComponent } from "../../Expression";
+import * as c from "../../../constants";
 
 interface RelationalProps {
     model: Expression
@@ -15,7 +16,7 @@ export function RelationalC(props: RelationalProps) {
     let lhs: any;
     let rhs: any;    
     
-    if (model.kind === "RelationalC" ) {
+    if (model.kind === c.RELATIONAL ) {
         const relationalModel: Relational = model.expressionType as Relational;
         lhsExpression = relationalModel.lhsExp
         rhsExpression = relationalModel.rhsExp
@@ -25,7 +26,7 @@ export function RelationalC(props: RelationalProps) {
 
     const onClickOnExpression = (model: Expression, e:any) => {
         e.stopPropagation()
-        callBack(getSuggestionsBasedOnExpressionKind("RelationalC"), model)
+        callBack(getSuggestionsBasedOnExpressionKind(c.RELATIONAL), model)
     };
 
     return (

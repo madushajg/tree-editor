@@ -1,5 +1,5 @@
 import React from "react";
-import { Arithmetic, Expression } from "../../models/definitions";
+import { Expression } from "../../models/definitions";
 import { addExpression, addOperator } from "../../utils/utils";
 
 import '../MainContainer/styles.css';

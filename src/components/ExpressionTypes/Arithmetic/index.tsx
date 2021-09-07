@@ -3,6 +3,7 @@ import { Arithmetic, Expression } from "../../../models/definitions";
 import { getSuggestionsBasedOnExpressionKind } from "../../../utils";
 import { getOperatorSuggestions } from "../../../utils";
 import { ExpressionComponent } from "../../Expression";
+import * as c from "../../../constants";
 
 interface ArithmeticProps {
     model: Expression
@@ -17,7 +18,7 @@ export function ArithmeticC(props: ArithmeticProps) {
     let arithmeticModel : Arithmetic;
     let operator: any;
     
-    if (model.kind === "ArithmeticC" ) {
+    if (model.kind === c.ARITHMETIC ) {
         arithmeticModel = model.expressionType as Arithmetic;
         lhsExpression = arithmeticModel.lhsOperand
         rhsExpression = arithmeticModel.rhsOperand
@@ -29,12 +30,12 @@ export function ArithmeticC(props: ArithmeticProps) {
 
     const onClickOperator = (e: any) => {
         e.stopPropagation()
-        callBack(getOperatorSuggestions("ArithmeticC"), model, true)
+        callBack(getOperatorSuggestions(c.ARITHMETIC), model, true)
     }
 
     const onClickOnExpression = (model: Expression, e:any) => {
         e.stopPropagation()
-        callBack(getSuggestionsBasedOnExpressionKind("ArithmeticC"), model, false)
+        callBack(getSuggestionsBasedOnExpressionKind(c.ARITHMETIC), model, false)
     };
 
     return (
