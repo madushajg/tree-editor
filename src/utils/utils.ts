@@ -103,6 +103,7 @@ export const ExpressionSuggestionsByKind : {[key: string]: string[]} = {
     ArithmeticC : [c.LITERAL, c.ARITHMETIC, c.CONDITIONAL],
     LogicalC : [c.CONDITIONAL],
     ConditionalC : [c.LITERAL],
+    EqualityC : [c.ARITHMETIC, c.CONDITIONAL],
     DefaultBooleanC : [c.RELATIONAL, c.EQUALITY, c.LOGICAL, c.ARITHMETIC, c.LITERAL],
 }
 
