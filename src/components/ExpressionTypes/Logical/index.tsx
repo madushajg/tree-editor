@@ -1,39 +1,39 @@
 import React from "react";
-import { Relational, Expression } from "../../../models/definitions";
+import { Expression, Logical } from "../../../models/definitions";
 import { getOperatorSuggestions, getSuggestionsBasedOnExpressionKind } from "../../../utils";
 import { ExpressionComponent } from "../../Expression";
 import * as c from "../../../constants";
 
-interface RelationalProps {
+interface LogicalProps {
     model: Expression
     callBack: (suggestions: string[], model: Expression, operator:boolean) => void
 }
 
-export function RelationalC(props: RelationalProps) {
+export function LogicalC(props: LogicalProps) {
     const {model, callBack} = props;
     let lhsExpression: any;
     let rhsExpression: any;
     let lhs: any;
     let rhs: any;
-    let operator: any;    
+    let operator: any;
     
-    if (model.kind === c.RELATIONAL ) {
-        const relationalModel: Relational = model.expressionType as Relational;
-        lhsExpression = relationalModel.lhsExp
-        rhsExpression = relationalModel.rhsExp
-        operator = relationalModel.operator
+    if (model.kind === c.LOGICAL ) {
+        const logicalModel: Logical = model.expressionType as Logical;
+        lhsExpression = logicalModel.lhsExp
+        rhsExpression = logicalModel.rhsExp
+        operator = logicalModel.operator
         lhs = <ExpressionComponent model={lhsExpression} callBack={callBack} isRoot={false} />;
         rhs = <ExpressionComponent model={rhsExpression} callBack={callBack} isRoot={false} />;
     }
 
     const onClickOperator = (e: any) => {
         e.stopPropagation()
-        callBack(getOperatorSuggestions(c.RELATIONAL), model, true)
+        callBack(getOperatorSuggestions(c.LOGICAL), model, true)
     }
 
     const onClickOnExpression = (model: Expression, e:any) => {
         e.stopPropagation()
-        callBack(getSuggestionsBasedOnExpressionKind(c.RELATIONAL), model,false)
+        callBack(getSuggestionsBasedOnExpressionKind(c.LOGICAL), model, false)
     };
 
     return (

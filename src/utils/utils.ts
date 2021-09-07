@@ -1,5 +1,5 @@
 
-import { Arithmetic, Conditional, Equality, Expression, Literal, Relational, TypeCheck, Variable } from '../models/definitions';
+import { Arithmetic, Conditional, Equality, Expression, Literal, Logical, Relational, TypeCheck, Variable } from '../models/definitions';
 import * as c from "../constants";
 
 export function deleteExpression (model: Expression ) {
@@ -20,6 +20,7 @@ export function addExpression (model: Expression, kind: string, value?: any ){
     | Variable
     | Relational
     | Equality
+    | Logical
     | Expression;
 
     if (kind === c.LITERAL){
@@ -32,6 +33,8 @@ export function addExpression (model: Expression, kind: string, value?: any ){
         expressionTemplate = createConditional();
     } else if (kind === c.ARITHMETIC) {
         expressionTemplate = createArithmetic(value);
+    } else if (kind === c.LOGICAL) {
+        expressionTemplate = createLogical(value);
     } else if( kind === c.VARIABLE) {
         expressionTemplate = createVariable(value);
     } else {
@@ -58,7 +61,13 @@ function createRelational (operator:  ">" | ">=" | "<" | "<=" | "operator"): Rel
             rhsExp: {type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL,} };
 }
 
-function createEquality (operator:  "==" | "!=" | "operator"): Equality {
+function createEquality (operator:  "==" | "!=" | "===" | "!==" | "operator"): Equality {
+    return { lhsExp : {type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL,},
+            operator: operator,
+            rhsExp: {type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL,} };
+}
+
+function createLogical (operator:  "&&" | "||" | "operator"): Logical {
     return { lhsExp : {type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL,},
             operator: operator,
             rhsExp: {type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL,} };
@@ -98,13 +107,14 @@ function createTypeCheck (type: "string" | "int" | "float" | "boolean"): TypeChe
 
 export const ExpressionSuggestionsByKind : {[key: string]: string[]} = {
     LiteralC : [],
-    comparison : [c.ARITHMETIC, c.CONDITIONAL, "type-checks"],
-    RelationalC : [c.ARITHMETIC, c.CONDITIONAL, "type-checks", c.RELATIONAL],
+    // comparison : [c.ARITHMETIC, c.CONDITIONAL, "type-checks"],
+    RelationalC : [c.ARITHMETIC, c.CONDITIONAL, c.TYPE_CHECK, c.RELATIONAL],
     ArithmeticC : [c.LITERAL, c.ARITHMETIC, c.CONDITIONAL],
-    LogicalC : [c.CONDITIONAL],
-    ConditionalC : [c.LITERAL],
-    EqualityC : [c.ARITHMETIC, c.CONDITIONAL],
-    DefaultBooleanC : [c.RELATIONAL, c.EQUALITY, c.LOGICAL, c.ARITHMETIC, c.LITERAL],
+    LogicalC : [c.CONDITIONAL,c.LITERAL,c.LOGICAL],
+    ConditionalC : [c.LITERAL,c.RELATIONAL,c.TYPE_CHECK],
+    EqualityC : [c.ARITHMETIC, c.CONDITIONAL, c.LITERAL],
+    DefaultBooleanC : [c.RELATIONAL, c.EQUALITY, c.LOGICAL, c.LITERAL, c.TYPE_CHECK],
+    TypeChecksC : [c.LITERAL]
 }
 
 
@@ -118,18 +128,19 @@ export const ExpressionSuggestionsByKind : {[key: string]: string[]} = {
 
 // }
 
-export const TypesForExpressionKind : {[key: string]: string[]} = {
-    comparison : ["int","decimal","float","string"],
-    literal : ["boolean", "int", "string", "float", "decimal"],
-    arithmetic : ["int","decimal","float","string"]
-}
+// export const TypesForExpressionKind : {[key: string]: string[]} = {
+//     comparison : ["int","decimal","float","string"],
+//     literal : ["boolean", "int", "string", "float", "decimal"],
+//     arithmetic : ["int","decimal","float","string"]
+// }
 
 export const OperatorsForExpressionKind : {[key:string]: string[]} = {
     ArithmeticC : ["+ ","- ","* ","/ ","% "],
     RelationalC : ["> " , ">= " , "< " , "<= "],
-    LogicalC : ["&&","||"],
-    UnaryC: ["+","-","!","~"],
-    comparison: [">","<",">=","<=","==","!=","===","!=="],
-    shift : ["<<",">>",">>>"],
-    range : ["...","..<"]
+    EqualityC : ["== " , "!= " , "=== " , "!== " ],
+    LogicalC : ["&& ","|| "],
+    UnaryC: ["+ ","- ","! ","~ "],
+    // comparison: [">","<",">=","<=","==","!=","===","!=="],
+    ShiftC : ["<< ",">> ",">>> "],
+    RangeC : ["... ","..< "]
 }
