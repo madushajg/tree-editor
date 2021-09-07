@@ -1,5 +1,5 @@
 
-import { Arithmetic, Conditional, Equality, Expression, Literal, Relational, TypeCheck, Variable } from '../models/definitions';
+import { Arithmetic, Conditional, Equality, Expression, Literal, Logical, Relational, TypeCheck, Variable } from '../models/definitions';
 import * as c from "../constants";
 
 export function deleteExpression (model: Expression ) {
@@ -20,6 +20,7 @@ export function addExpression (model: Expression, kind: string, value?: any ){
     | Variable
     | Relational
     | Equality
+    | Logical
     | Expression;
 
     if (kind === c.LITERAL){
@@ -32,6 +33,8 @@ export function addExpression (model: Expression, kind: string, value?: any ){
         expressionTemplate = createConditional();
     } else if (kind === c.ARITHMETIC) {
         expressionTemplate = createArithmetic(value);
+    } else if( kind === c.LOGICAL) {
+        expressionTemplate = createLogical(value);
     } else if( kind === c.VARIABLE) {
         expressionTemplate = createVariable(value);
     } else {
@@ -77,8 +80,13 @@ function createConditional(): Conditional {
             trueExpr: {type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL,},
             keyWord2: ':',
             falseExpr: {type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL,}
+    }     
 }
-     
+
+function createLogical (operator:  "&&" | "||" | "operator"): Logical {
+    return { lhsComponent : {type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL,},
+            operator: operator,
+            rhsComponent: {type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL,} };
 }
 
 function createTypeCheck (type: "string" | "int" | "float" | "boolean"): TypeCheck {

@@ -7,6 +7,7 @@ export interface Expression {
       | TypeCheck
       | Conditional
       | Literal
+      | Logical
       | Arithmetic
       | Variable
       | DefaultBoolean
@@ -45,6 +46,12 @@ export interface Arithmetic {
     lhsOperand: Expression
     operator: "*" | "/" | "%" | "+" | "-" | "operator"
     rhsOperand: Expression
+}
+
+export interface Logical {
+    lhsComponent: Expression
+    operator: "&&" | "||" | "operator"
+    rhsComponent: Expression
 }
 
 export interface TypeCheck { // if (x is error)
