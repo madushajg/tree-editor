@@ -11,7 +11,8 @@ export function LiteralC(props: LiteralProps) {
     const {model, callBack} = props;
     let value: any;
 
-    const onClickOnExpression = () => {
+    const onClickOnExpression = (e: any) => {
+        e.stopPropagation()
         callBack(getSuggestionsBasedOnExpressionKind("LiteralC"), model)
     };
 
@@ -23,7 +24,7 @@ export function LiteralC(props: LiteralProps) {
 
     return (
         <span className="App-expression-block App-expression-block-element">
-            <button className="template-button" onClick={onClickOnExpression}>
+            <button className="template-button" onClick={(e) => onClickOnExpression(e)}>
                 {value}
             </button>
         </span>
