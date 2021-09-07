@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Expression, Literal } from "../../../models/definitions";
 // import { getSuggestionsBasedOnExpressionKind } from "../../../utils";
 import * as c from "../../../constants";
+import { addExpression } from "../../../utils/utils";
 
 interface LiteralProps {
     model: Expression
@@ -18,17 +19,48 @@ export function LiteralC(props: LiteralProps) {
     // };
 
 
-    if (model.kind === c.LITERAL) {
+    const [isDoubleClick, setIsDoubleClick] = useState (true);
+    const [literal, setLiteral] = useState ("");
+
+    
+    if (model.kind === "LiteralC" ) {
         const literalModel: Literal = model.expressionType as Literal;
         value = literalModel?.value ? literalModel.value : "expression";
     }
 
+    
+    const inputblur = (event:  React.FocusEvent<HTMLInputElement>) => {
+        if (literal !==""){
+            addExpression(model, "literal", literal)
+        }        
+    };
+
+    const inputChangeHandler = (event:  React.KeyboardEvent<HTMLSpanElement>) => {
+        
+        setLiteral(event.currentTarget.textContent ? event.currentTarget.textContent : "");
+    };
+
+    const inputEnterHandler = (event:  React.KeyboardEvent<HTMLSpanElement>) => {
+        if (event.code === "Enter" || event.code === "Tab"){
+            addExpression(model, "literal", event.currentTarget.textContent);
+        }
+        
+      };
+      
     return (
-        <span className="App-expression-block App-expression-block-element">
-            <input type="text" id="literal" name="literal" value={value}></input>
-            {/* <button className="template-button" onClick={(e) => onClickOnExpression(e)}>
-                {value}
-            </button> */}
-        </span>
+        <>
+            {
+            isDoubleClick?(
+
+
+        <span className="App-expression-block App-expression-block-element" onDoubleClick={() => {
+                setIsDoubleClick(false)
+              }}>{value}</span>
+        
+               ):(
+                  <span         onKeyDown={inputEnterHandler} contentEditable={true} onBlur={inputblur} onInput = {inputChangeHandler}
+                  > {value} </span>)
+                }
+            </>
     );
 }
