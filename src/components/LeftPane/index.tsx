@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {Expression} from '../../models/definitions'
 import { getSuggestionsBasedOnExpressionKind } from "../../utils";
 import { ExpressionComponent } from "../Expression";
+import { sampleModel } from "../MainContainer";
 
 import '../MainContainer/styles.css';
 import { Suggestions } from "../Suggestions";
@@ -18,14 +19,20 @@ export function LeftPane(props: ModelProps) {
     const [suggestionList, SetSuggestionsList] = useState(getSuggestionsBasedOnExpressionKind("LiteralC"));
     const [isSuggestionClicked, SetIsSuggestionClicked] = useState(false);
 
-    const onClickButton = (suggestions:string[], model: Expression) => {
+    const onClickExpressionButton = (suggestions:string[], model: Expression) => {
         currentModel.model = model
         SetSuggestionsList(suggestions)
         SetIsSuggestionClicked(false)
     }
 
-    const onClickSuggestionButton = (model: Expression) => {
-        currentModel.model = model
+    const onClickSuggestionButton = (cmodel: Expression) => {
+        currentModel.model = cmodel
+        console.log("==========onClickSuggestionButton===========")
+        console.log("===currentModel===")
+        console.log(currentModel.model)
+        console.log("===model===")
+        console.log(model)
+        console.log("==========onClickSuggestionButton===========")
         SetIsSuggestionClicked(!isSuggestionClicked)
     }
 
@@ -34,7 +41,7 @@ export function LeftPane(props: ModelProps) {
             <h3 className="App-leftPane-heading">Conditional Statement</h3>
             <div className="App-statement-template-editor">
                 <div className="App-statement-template-editor-inner">
-                    <ExpressionComponent model={model} callBack={onClickButton} isRoot={true}/>
+                    <ExpressionComponent model={model} callBack={onClickExpressionButton} isRoot={true}/>
                 </div>
             </div>
             <div className="App-context-sensitivePane">

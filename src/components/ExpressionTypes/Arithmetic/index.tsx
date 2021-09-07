@@ -9,29 +9,34 @@ interface ArithmeticProps {
 }
 export function ArithmeticC(props: ArithmeticProps) {
     const {model, callBack} = props;
+    let lhsExpression: any;
+    let rhsExpression: any;
     let lhs: any;
     let rhs: any;
     
     if (model.kind === "ArithmeticC" ) {
         const arithmeticModel: Arithmetic = model.expressionType as Arithmetic;
-        lhs = <ExpressionComponent model={arithmeticModel.lhsOperand} callBack={callBack} isRoot={false}/>;
-        rhs = <ExpressionComponent model={arithmeticModel.rhsOperand} callBack={callBack} isRoot={false}/>;
+        lhsExpression = arithmeticModel.lhsOperand
+        rhsExpression = arithmeticModel.rhsOperand
+        lhs = <ExpressionComponent model={lhsExpression} callBack={callBack} isRoot={false}/>;
+        rhs = <ExpressionComponent model={rhsExpression} callBack={callBack} isRoot={false}/>;
     }
 
-    const onClickOnExpression = () => {
-        callBack(getSuggestionsBasedOnExpressionKind("ArithmeticC"), model)
+    const onClickOnExpression = (model: Expression, e:any) => {
+        e.stopPropagation()
+        callBack(getSuggestionsBasedOnExpressionKind("RelationalC"), model)
     };
 
     return (
         <span>
             {/* {"("} */}
             {/* <button className="template-button">{lhs}</button> */}
-            <button className="template-button" onClick={onClickOnExpression}>{lhs}</button>
+            <span className="template-button" onClick={(e)=>onClickOnExpression(lhsExpression, e)}>{lhs}</span>
             <span className="App-expression-block App-expression-block-element">
                 <button className="template-button">operators</button>    
             </span>
             {/* <button className="template-button">{rhs}</button> */}
-            <button className="template-button" onClick={onClickOnExpression}>{rhs}</button>
+            <span className="template-button" onClick={(e)=>onClickOnExpression(rhsExpression, e)}>{rhs}</span>
             {/* {")"} */}
         </span>
     );
