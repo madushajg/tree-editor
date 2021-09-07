@@ -1,6 +1,7 @@
 import React from "react";
 import { Expression } from "../../models/definitions";
-import {getExpressionTypeComponent} from "../../utils";
+import {getExpressionTypeComponent, getSuggestionsBasedOnExpressionKind} from "../../utils";
+import * as c from "../../constants";
 
 interface ExpressionComponentProps {
     model: Expression
@@ -14,6 +15,11 @@ export function ExpressionComponent(props: ExpressionComponentProps) {
 
     const component = getExpressionTypeComponent(model, callBack);
 
+    const onClickOnRootExpression = (model: Expression, e:any) => {
+        e.stopPropagation()
+        callBack(getSuggestionsBasedOnExpressionKind(c.DEFAULT_BOOL), model, false)
+    };
+
     return (
         <span>
             {
@@ -22,9 +28,15 @@ export function ExpressionComponent(props: ExpressionComponentProps) {
                     {"if"}
                 </span> : null
             }
-            {/* <span> */}
-                {component}
-            {/* </span> */}
+            {
+                isRoot ?
+                <button className="template-button" onClick={(e)=>onClickOnRootExpression(model, e)}>
+                    {component}
+                </button> :
+                <span>
+                    {component}
+                </span>
+            }
             {
                 isRoot ?
                 <span className="App-expression-block App-expression-block-disabled">
