@@ -7,7 +7,6 @@ interface ArithmeticProps {
     model: Expression
     callBack: (suggestions: string[], model: Expression) => void
 }
-
 export function ArithmeticC(props: ArithmeticProps) {
     const {model, callBack} = props;
     let lhs: any;
