@@ -30,13 +30,11 @@ export function ArithmeticC(props: ArithmeticProps) {
     const onClickOperator = (e: any) => {
         e.stopPropagation()
         callBack(getOperatorSuggestions("ArithmeticC"), model, true)
-        console.log("operator model")
-        console.log(model)
     }
 
     const onClickOnExpression = (model: Expression, e:any) => {
         e.stopPropagation()
-        callBack(getSuggestionsBasedOnExpressionKind("RelationalC"), model, false)
+        callBack(getSuggestionsBasedOnExpressionKind("ArithmeticC"), model, false)
     };
 
     return (

@@ -16,21 +16,11 @@ export function Suggestions(props: SuggestionsProps) {
 
     const onClickSuggestion = (kind: string, operator: boolean, model: Expression) => {
         if (operator) {
-            console.log("==+++++++ onclick on operator")
-            // if (model.kind === "ArithmeticC" ) {
-            //     let arithmeticModel : Arithmetic = model.expressionType as Arithmetic;
-            //     addOperator(arithmeticModel, kind);
-            // }
             addOperator(model,kind)
-           
-            console.log("updated operator model", model)
-            callBack(model)
-
         } else {
             addExpression(model, kind);
-            callBack(model)
-
         }
+        callBack(model)
 
     }
 

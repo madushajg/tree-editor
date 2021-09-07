@@ -7,13 +7,8 @@ export function deleteExpression (model: Expression ) {
 }
 
 export function addOperator (model: Expression, kind: any) {
-    // console.log("============addOperator model")
-    // console.log(model)
     let expression : any = model.expressionType
     expression.operator = kind
-    // (model.expressionType as Arithmetic).operator  = kind
-    // model.operator = kind
-    // console.log(expression.operator)
 }
 
 export function addExpression (model: Expression, kind: string, value?: any ){
