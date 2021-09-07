@@ -7,10 +7,10 @@ interface VariableProps {
 }
 
 export function VariableC(props: VariableProps) {
-    const {model} = props;
+    const { model } = props;
     let name: any;
-    
-    if (model.kind === c.VARIABLE ) {
+
+    if (model.kind === c.VARIABLE) {
         const variableModel: Variable = model.expressionType as Variable;
         name = variableModel.name;
     }

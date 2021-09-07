@@ -9,7 +9,7 @@ interface LiteralProps {
 }
 
 export function LiteralC(props: LiteralProps) {
-    const {model, callBack} = props;
+    const { model, callBack } = props;
     let value: any;
 
     // const onClickOnExpression = (e: any) => {
@@ -17,8 +17,8 @@ export function LiteralC(props: LiteralProps) {
     //     callBack(getSuggestionsBasedOnExpressionKind(c.LITERAL), model)
     // };
 
-    
-    if (model.kind === c.LITERAL ) {
+
+    if (model.kind === c.LITERAL) {
         const literalModel: Literal = model.expressionType as Literal;
         value = literalModel?.value ? literalModel.value : "expression";
     }
