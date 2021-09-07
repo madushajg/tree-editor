@@ -108,8 +108,8 @@ function createTypeCheck (type: "string" | "int" | "float" | "boolean"): TypeChe
 export const ExpressionSuggestionsByKind : {[key: string]: string[]} = {
     LiteralC : ["RelationalC", "EqualityC", "LogicalC", "ArithmeticC"],
     comparison : ["ArithmeticC", "ConditionalC", "type-checks"],
-    RelationalC : ["ArithmeticC", "ConditionalC", "type-checks"],
-    ArithmeticC : ["LiteralC","ArithmeticC", "ConditionalC"],
+    RelationalC : ["ArithmeticC", "ConditionalC", "type-checks", "RelationalC"],
+    ArithmeticC : ["LiteralC", "ArithmeticC", "ConditionalC"],
     LogicalC : ["ConditionalC"],
     ConditionalC : ["LiteralC"]
 }

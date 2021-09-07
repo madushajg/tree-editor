@@ -8,16 +8,19 @@ interface ArithmeticProps {
     model: Expression
     callBack: (suggestions: string[], model: Expression, operator:boolean) => void
 }
-
 export function ArithmeticC(props: ArithmeticProps) {
     const {model, callBack} = props;
+    let lhsExpression: any;
+    let rhsExpression: any;
     let lhs: any;
     let rhs: any;
     
     if (model.kind === "ArithmeticC" ) {
         const arithmeticModel: Arithmetic = model.expressionType as Arithmetic;
-        lhs = <ExpressionComponent model={arithmeticModel.lhsOperand} callBack={callBack} isRoot={false}/>;
-        rhs = <ExpressionComponent model={arithmeticModel.rhsOperand} callBack={callBack} isRoot={false}/>;
+        lhsExpression = arithmeticModel.lhsOperand
+        rhsExpression = arithmeticModel.rhsOperand
+        lhs = <ExpressionComponent model={lhsExpression} callBack={callBack} isRoot={false}/>;
+        rhs = <ExpressionComponent model={rhsExpression} callBack={callBack} isRoot={false}/>;
     }
 
 
@@ -27,20 +30,21 @@ export function ArithmeticC(props: ArithmeticProps) {
         console.log(model)
     }
 
-    const onClickOnExpression = () => {
-        callBack(getSuggestionsBasedOnExpressionKind("ArithmeticC"), model, false)
+    const onClickOnExpression = (model: Expression, e:any) => {
+        e.stopPropagation()
+        callBack(getSuggestionsBasedOnExpressionKind("RelationalC"), model, false)
     };
 
     return (
         <span>
             {/* {"("} */}
             {/* <button className="template-button">{lhs}</button> */}
-            <button className="template-button" onClick={onClickOnExpression}>{lhs}</button>
+            <span className="template-button" onClick={(e)=>onClickOnExpression(lhsExpression, e)}>{lhs}</span>
             <span className="App-expression-block App-expression-block-element">
                 <button className="template-button" onClick={()=> onClickOperator()}>operators</button>
             </span>
             {/* <button className="template-button">{rhs}</button> */}
-            <button className="template-button" onClick={onClickOnExpression}>{rhs}</button>
+            <span className="template-button" onClick={(e)=>onClickOnExpression(rhsExpression, e)}>{rhs}</span>
             {/* {")"} */}
         </span>
     );
