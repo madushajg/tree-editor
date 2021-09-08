@@ -11,6 +11,7 @@ export interface Expression {
     | Arithmetic
     | Variable
     | Unary
+    | StringTemplate
     | DefaultBoolean
     | Expression
 }
@@ -53,6 +54,12 @@ export interface Logical {
     lhsComponent: Expression
     operator: "&&" | "||" | "operator"
     rhsComponent: Expression
+}
+
+export interface StringTemplate {
+    start: "string `"
+    exp: Expression
+    end: "`"
 }
 
 export interface TypeCheck { // if (x is error)

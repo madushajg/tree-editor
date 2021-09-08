@@ -8,6 +8,7 @@ import { ConditionalC } from './Conditional';
 import { LogicalC } from './Logical';
 import { TypeCheckC } from './TypeCheck';
 import { UnaryC } from './Unary';
+import { StringTemplateC } from './StringTemplate';
 import { DefaultBooleanC } from './Default/Boolean';
 
 export { ArithmeticC };
@@ -20,4 +21,5 @@ export { ConditionalC };
 export { LogicalC };
 export { UnaryC };
 export { TypeCheckC };
+export { StringTemplateC };
 export { DefaultBooleanC };

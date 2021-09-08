@@ -1,4 +1,4 @@
-import { Arithmetic, Conditional, Equality, Expression, Literal, Logical, Relational, TypeCheck, Unary, Variable } from '../models/definitions';
+import { Arithmetic, Conditional, Equality, Expression, Literal, Logical, Relational, TypeCheck, Unary, Variable, StringTemplate } from '../models/definitions';
 import * as c from "../constants";
 
 export function deleteExpression(model: Expression) {
@@ -24,6 +24,7 @@ export function addExpression(model: Expression, kind: string, value?: any) {
         | Relational
         | Equality
         | Logical
+        | StringTemplate
         | Unary
         | Expression;
 
@@ -43,6 +44,8 @@ export function addExpression(model: Expression, kind: string, value?: any) {
         expressionTemplate = createVariable(value);
     } else if (kind === c.UNARY) {
         expressionTemplate = createUnary(value);
+    } else if (kind === c.STRING_TEMPLATE) {
+        expressionTemplate = createStringTemplate();
     } else {
         expressionTemplate = createTypeCheck(value);
     }
@@ -102,6 +105,14 @@ function createLogical(operator: "&&" | "||" | "operator"): Logical {
     };
 }
 
+function createStringTemplate(): StringTemplate {
+    return {
+        start: "string `",
+        exp: { type: ["string"], kind: c.DEFAULT_BOOL},
+        end: "`"
+    }
+}
+
 function createTypeCheck(type: "string" | "int" | "float" | "boolean"): TypeCheck {
     return {
         value: { type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL, },
@@ -128,14 +139,15 @@ function createUnary(operator: "+" | "-" | "~" | "!" | "operator"): Unary {
 export const ExpressionSuggestionsByKind: { [key: string]: string[] } = {
     LiteralC: [],
     // comparison : [c.ARITHMETIC, c.CONDITIONAL, "type-checks"],
-    RelationalC: [c.ARITHMETIC, c.CONDITIONAL, c.TYPE_CHECK, c.RELATIONAL],
+    RelationalC: [c.ARITHMETIC, c.CONDITIONAL, c.TYPE_CHECK, c.RELATIONAL, c.LITERAL],
     ArithmeticC: [c.LITERAL, c.ARITHMETIC, c.CONDITIONAL],
-    LogicalC: [c.CONDITIONAL, c.LITERAL, c.LOGICAL],
+    LogicalC: [c.RELATIONAL, c.LOGICAL, c.CONDITIONAL, c.LITERAL],
     ConditionalC: [c.LITERAL, c.RELATIONAL, c.TYPE_CHECK, c.CONDITIONAL],
-    EqualityC: [c.ARITHMETIC, c.CONDITIONAL, c.LITERAL],
+    EqualityC: [c.ARITHMETIC, c.CONDITIONAL, c.LITERAL, c.STRING_TEMPLATE,],
     DefaultBooleanC: [c.RELATIONAL, c.EQUALITY, c.LOGICAL, c.LITERAL, c.TYPE_CHECK, c.CONDITIONAL, c.UNARY],
     TypeCheckC: [c.LITERAL],
-    UnaryC: [c.LITERAL]
+    UnaryC: [c.LITERAL],
+    StringTemplateC: [c.STRING_TEMPLATE, c.ARITHMETIC, c.CONDITIONAL]
 }
 
 
