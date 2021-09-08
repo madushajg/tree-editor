@@ -19,11 +19,14 @@ export function LiteralC(props: LiteralProps) {
     // };
 
 
+
     const [isDoubleClick, setIsDoubleClick] = useState (true);
     const [literal, setLiteral] = useState ("");
 
     
-    if (model.kind === "LiteralC" ) {
+
+    if (model.kind === c.LITERAL) {
+
         const literalModel: Literal = model.expressionType as Literal;
         value = literalModel?.value ? literalModel.value : "expression";
     }
