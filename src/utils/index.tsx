@@ -8,7 +8,7 @@ export function getSuggestionsBasedOnExpressionKind(kind: string): string[] {
    return ExpressionSuggestionsByKind[kind];
 }
 
-export function getOperatorSuggestions(kind:string) : string[] {
+export function getOperatorSuggestions(kind: string): string[] {
    console.log(OperatorsForExpressionKind[kind])
    if (kind in OperatorsForExpressionKind) {
       return OperatorsForExpressionKind[kind];
@@ -16,13 +16,13 @@ export function getOperatorSuggestions(kind:string) : string[] {
    return []; // we can remove the empty array return if we only set the operator prop to true for the expressions with operators
 }
 
-export function getExpressionTypeComponent(expression: Expression, callBack:(suggestions: string[], model: Expression, operator:boolean) => void): ReactNode {
+export function getExpressionTypeComponent(expression: Expression, callBack: (suggestions: string[], model: Expression, operator: boolean) => void): ReactNode {
    const ExprTypeComponent = (expressionTypeComponents as any)[expression.kind];
-   
+
    if (!ExprTypeComponent) {
    }
 
-   return <ExprTypeComponent model={expression} callBack={callBack}/>;
+   return <ExprTypeComponent model={expression} callBack={callBack} />;
 }
 
 // export function getSuggestionBasedOnExpressionType(Type: string[]): string[] {

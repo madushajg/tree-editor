@@ -10,7 +10,7 @@ interface EqualityProps {
 }
 
 export function EqualityC(props: EqualityProps) {
-    const {model, callBack} = props;
+    const { model, callBack } = props;
     let lhsExpression: any;
     let rhsExpression: any;
     let lhs: any;
@@ -27,23 +27,23 @@ export function EqualityC(props: EqualityProps) {
     }
 
     const onClickOperator = (e: any) => {
-        e.stopPropagation()
-        callBack(getOperatorSuggestions(c.EQUALITY), model, true)
-    }
+            e.stopPropagation()
+            callBack(getOperatorSuggestions(c.EQUALITY), model, true)
+        }
 
-    const onClickOnExpression = (model: Expression, e:any) => {
+    const onClickOnExpression = (model: Expression, e: any) => {
         e.stopPropagation()
         callBack(getSuggestionsBasedOnExpressionKind(c.EQUALITY), model, false)
     };
 
     return (
         <span>
-            <button className="template-button" onClick={(e)=>onClickOnExpression(lhsExpression, e)}>{lhs}</button>
+            <button className="template-button" onClick={(e) => onClickOnExpression(lhsExpression, e)}>{lhs}</button>
             {/* <span className="template-button" onClick={(e)=>onClickOnExpression(lhsExpression, e)}>{lhs}</span> */}
             <span className="App-expression-block App-expression-block-element">
                 <button className="template-button" onClick={(e)=> onClickOperator(e)}>{operator ? operator: "operator"}</button>
             </span>
-            <button className="template-button" onClick={(e)=>onClickOnExpression(rhsExpression, e)}>{rhs}</button>
+            <button className="template-button" onClick={(e) => onClickOnExpression(rhsExpression, e)}>{rhs}</button>
             {/* <span className="template-button" onClick={(e)=>onClickOnExpression(rhsExpression, e)}>{rhs}</span> */}
         </span>
     );

@@ -10,17 +10,17 @@ interface LogicalProps {
 }
 
 export function LogicalC(props: LogicalProps) {
-    const {model, callBack} = props;
+    const { model, callBack } = props;
     let lhsExpression: any;
     let rhsExpression: any;
     let lhs: any;
     let rhs: any;
     let operator: any;
-    
+
     if (model.kind === c.LOGICAL ) {
         const logicalModel: Logical = model.expressionType as Logical;
-        lhsExpression = logicalModel.lhsExp
-        rhsExpression = logicalModel.rhsExp
+        lhsExpression = logicalModel.lhsComponent
+        rhsExpression = logicalModel.rhsComponent
         operator = logicalModel.operator
         lhs = <ExpressionComponent model={lhsExpression} callBack={callBack} isRoot={false} />;
         rhs = <ExpressionComponent model={rhsExpression} callBack={callBack} isRoot={false} />;
@@ -31,20 +31,18 @@ export function LogicalC(props: LogicalProps) {
         callBack(getOperatorSuggestions(c.LOGICAL), model, true)
     }
 
-    const onClickOnExpression = (model: Expression, e:any) => {
+    const onClickOnExpression = (model: Expression, e: any) => {
         e.stopPropagation()
         callBack(getSuggestionsBasedOnExpressionKind(c.LOGICAL), model, false)
     };
 
     return (
         <span>
-            <button className="template-button" onClick={(e)=>onClickOnExpression(lhsExpression, e)}>{lhs}</button>
-            {/* <span className="template-button" onClick={(e)=>onClickOnExpression(lhsExpression, e)}>{lhs}</span> */}
+            <button className="template-button" onClick={(e) => onClickOnExpression(lhsExpression, e)}>{lhs}</button>
             <span className="App-expression-block App-expression-block-element">
-                <button className="template-button" onClick={(e)=> onClickOperator(e)}>{operator ? operator: "operator"}</button>
+                <button className="template-button"  onClick={(e)=> onClickOperator(e)}>{operator ? operator: "operator"}</button>
             </span>
-            <button className="template-button" onClick={(e)=>onClickOnExpression(rhsExpression, e)}>{rhs}</button>
-            {/* <span className="template-button" onClick={(e)=>onClickOnExpression(rhsExpression, e)}>{rhs}</span> */}
+            <button className="template-button" onClick={(e) => onClickOnExpression(rhsExpression, e)}>{rhs}</button>
         </span>
     );
 }

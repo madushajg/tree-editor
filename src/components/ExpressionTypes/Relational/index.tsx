@@ -10,12 +10,12 @@ interface RelationalProps {
 }
 
 export function RelationalC(props: RelationalProps) {
-    const {model, callBack} = props;
+    const { model, callBack } = props;
     let lhsExpression: any;
     let rhsExpression: any;
     let lhs: any;
     let rhs: any;
-    let operator: any;    
+    let operator: any;
     
     if (model.kind === c.RELATIONAL ) {
         const relationalModel: Relational = model.expressionType as Relational;
@@ -27,23 +27,23 @@ export function RelationalC(props: RelationalProps) {
     }
 
     const onClickOperator = (e: any) => {
-        e.stopPropagation()
-        callBack(getOperatorSuggestions(c.RELATIONAL), model, true)
-    }
+            e.stopPropagation()
+            callBack(getOperatorSuggestions(c.RELATIONAL), model, true)
+        }
 
-    const onClickOnExpression = (model: Expression, e:any) => {
+    const onClickOnExpression = (model: Expression, e: any) => {
         e.stopPropagation()
         callBack(getSuggestionsBasedOnExpressionKind(c.RELATIONAL), model,false)
     };
 
     return (
         <span>
-            <button className="template-button" onClick={(e)=>onClickOnExpression(lhsExpression, e)}>{lhs}</button>
+            <button className="template-button" onClick={(e) => onClickOnExpression(lhsExpression, e)}>{lhs}</button>
             {/* <span className="template-button" onClick={(e)=>onClickOnExpression(lhsExpression, e)}>{lhs}</span> */}
             <span className="App-expression-block App-expression-block-element">
                 <button className="template-button" onClick={(e)=> onClickOperator(e)}>{operator ? operator: "operator"}</button>
             </span>
-            <button className="template-button" onClick={(e)=>onClickOnExpression(rhsExpression, e)}>{rhs}</button>
+            <button className="template-button" onClick={(e) => onClickOnExpression(rhsExpression, e)}>{rhs}</button>
             {/* <span className="template-button" onClick={(e)=>onClickOnExpression(rhsExpression, e)}>{rhs}</span> */}
         </span>
     );

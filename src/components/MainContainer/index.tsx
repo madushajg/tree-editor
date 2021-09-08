@@ -134,15 +134,15 @@ export const sampleModel: Expression = {
 
 
 export function MainContainer() {
-    let currentModel: {model: Expression} = {
+    let currentModel: { model: Expression } = {
         model: sampleModel
     }
 
     return (
         <div className="App">
-            <img src={baseImage} alt="base" width='100%'/>
+            <img src={baseImage} alt="base" width='100%' />
             <div className="App-tree-editor">
-                <LeftPane model={sampleModel} currentModel={currentModel}/>
+                <LeftPane model={sampleModel} currentModel={currentModel} />
                 <div className="vl"></div>
                 <RightPane />
             </div>
