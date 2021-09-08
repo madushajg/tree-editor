@@ -145,8 +145,8 @@ export const ExpressionSuggestionsByKind: { [key: string]: string[] } = {
     ConditionalC: [c.LITERAL, c.RELATIONAL, c.TYPE_CHECK, c.CONDITIONAL],
     EqualityC: [c.ARITHMETIC, c.CONDITIONAL, c.LITERAL, c.STRING_TEMPLATE,],
     DefaultBooleanC: [c.RELATIONAL, c.EQUALITY, c.LOGICAL, c.LITERAL, c.TYPE_CHECK, c.CONDITIONAL, c.UNARY],
-    TypeCheckC: [c.LITERAL],
-    UnaryC: [c.LITERAL],
+    TypeCheckC: [c.LITERAL, c.CONDITIONAL   ],
+    UnaryC: [c.LITERAL, c.RELATIONAL, c.EQUALITY, c.ARITHMETIC],
     StringTemplateC: [c.STRING_TEMPLATE, c.ARITHMETIC, c.CONDITIONAL]
 }
 
