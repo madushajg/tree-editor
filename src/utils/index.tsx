@@ -1,11 +1,15 @@
 import React from 'react';
 import { ReactNode } from 'react';
 import { Expression } from '../models/definitions';
-import { ExpressionSuggestionsByKind, OperatorsForExpressionKind } from "./utils";
+import { ExpressionSuggestionsByKind, OperatorsForExpressionKind, TypesForExpressionKind } from "./utils";
 import * as expressionTypeComponents from '../components/ExpressionTypes';
 
 export function getSuggestionsBasedOnExpressionKind(kind: string): string[] {
    return ExpressionSuggestionsByKind[kind];
+}
+
+export function getTypesBasedOnExpressionKind(kind: string): string[] {
+   return TypesForExpressionKind[kind];
 }
 
 export function getOperatorSuggestions(kind: string): string[] {
