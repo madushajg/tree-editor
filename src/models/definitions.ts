@@ -26,7 +26,7 @@ export interface DefaultBoolean { }
 
 export interface Comparison {
     lhsExp: Expression,
-    operator: ">" | ">=" | "<" | "<=" | "==" | "!=" | "operator"
+    operator: ">" | ">=" | "<" | "<=" | "==" | "!=" |  "===" | "!==" |"operator"
     rhsExp: Expression
 }
 
@@ -38,7 +38,7 @@ export interface Relational extends Comparison {
 
 export interface Equality extends Comparison {
     lhsExp: Expression
-    operator: "==" | "!=" | "operator"
+    operator:  "==" | "!=" | "===" | "!==" | "operator"
     rhsExp: Expression
 }
 
