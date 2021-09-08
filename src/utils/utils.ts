@@ -7,7 +7,11 @@ export function deleteExpression(model: Expression) {
 
 export function addOperator(model: Expression, kind: any) {
     let expression: any = model.expressionType
-    expression.operator = kind
+    if ("typeDescriptor" in expression) {
+        expression.typeDescriptor = kind
+    } else {
+        expression.operator = kind
+    }
 }
 
 export function addExpression(model: Expression, kind: string, value?: any) {
@@ -60,11 +64,11 @@ function createRelational(operator: ">" | ">=" | "<" | "<=" | "operator"): Relat
     };
 }
 
-function createEquality (operator:  "==" | "!=" | "===" | "!==" | "operator"): Equality {
-    return { 
-        lhsExp : {type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL,},
+function createEquality(operator: "==" | "!=" | "===" | "!==" | "operator"): Equality {
+    return {
+        lhsExp: { type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL, },
         operator: operator,
-        rhsExp: {type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL,} 
+        rhsExp: { type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL, }
     };
 }
 
@@ -111,16 +115,16 @@ function createTypeCheck(type: "string" | "int" | "float" | "boolean"): TypeChec
 //     conditional : ["literal"]
 // }
 
-export const ExpressionSuggestionsByKind : {[key: string]: string[]} = {
-    LiteralC : [],
+export const ExpressionSuggestionsByKind: { [key: string]: string[] } = {
+    LiteralC: [],
     // comparison : [c.ARITHMETIC, c.CONDITIONAL, "type-checks"],
-    RelationalC : [c.ARITHMETIC, c.CONDITIONAL, c.TYPE_CHECK, c.RELATIONAL],
-    ArithmeticC : [c.LITERAL, c.ARITHMETIC, c.CONDITIONAL],
-    LogicalC : [c.CONDITIONAL,c.LITERAL,c.LOGICAL],
-    ConditionalC : [c.LITERAL,c.RELATIONAL,c.TYPE_CHECK, c.CONDITIONAL],
-    EqualityC : [c.ARITHMETIC, c.CONDITIONAL, c.LITERAL],
-    DefaultBooleanC : [c.RELATIONAL, c.EQUALITY, c.LOGICAL, c.LITERAL, c.TYPE_CHECK, c.CONDITIONAL],
-    TypeChecksC : [c.LITERAL]
+    RelationalC: [c.ARITHMETIC, c.CONDITIONAL, c.TYPE_CHECK, c.RELATIONAL],
+    ArithmeticC: [c.LITERAL, c.ARITHMETIC, c.CONDITIONAL],
+    LogicalC: [c.CONDITIONAL, c.LITERAL, c.LOGICAL],
+    ConditionalC: [c.LITERAL, c.RELATIONAL, c.TYPE_CHECK, c.CONDITIONAL],
+    EqualityC: [c.ARITHMETIC, c.CONDITIONAL, c.LITERAL],
+    DefaultBooleanC: [c.RELATIONAL, c.EQUALITY, c.LOGICAL, c.LITERAL, c.TYPE_CHECK, c.CONDITIONAL],
+    TypeCheckC: [c.LITERAL]
 }
 
 
@@ -134,19 +138,20 @@ export const ExpressionSuggestionsByKind : {[key: string]: string[]} = {
 
 // }
 
-// export const TypesForExpressionKind : {[key: string]: string[]} = {
-//     comparison : ["int","decimal","float","string"],
-//     literal : ["boolean", "int", "string", "float", "decimal"],
-//     arithmetic : ["int","decimal","float","string"]
-// }
+export const TypesForExpressionKind: { [key: string]: string[] } = {
+    TypeCheckC: ["string ", "int ", "float ", "decimal ", "boolean ", "error "]
+    // comparison : ["int","decimal","float","string"],
+    // literal : ["boolean", "int", "string", "float", "decimal"],
+    // arithmetic : ["int","decimal","float","string"]
+}
 
 export const OperatorsForExpressionKind: { [key: string]: string[] } = {
     ArithmeticC: ["+ ", "- ", "* ", "/ ", "% "],
     RelationalC: ["> ", ">= ", "< ", "<= "],
-    EqualityC : ["== " , "!= " , "=== " , "!== " ],
-    LogicalC : ["&& ","|| "],
-    UnaryC: ["+ ","- ","! ","~ "],
+    EqualityC: ["== ", "!= ", "=== ", "!== "],
+    LogicalC: ["&& ", "|| "],
+    UnaryC: ["+ ", "- ", "! ", "~ "],
     // comparison: [">","<",">=","<=","==","!=","===","!=="],
-    ShiftC : ["<< ",">> ",">>> "],
-    RangeC : ["... ","..< "]
+    ShiftC: ["<< ", ">> ", ">>> "],
+    RangeC: ["... ", "..< "]
 }

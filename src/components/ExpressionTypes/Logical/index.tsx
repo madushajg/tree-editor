@@ -6,7 +6,7 @@ import * as c from "../../../constants";
 
 interface LogicalProps {
     model: Expression
-    callBack: (suggestions: string[], model: Expression, operator:boolean) => void
+    callBack: (suggestions: string[], model: Expression, operator: boolean) => void
 }
 
 export function LogicalC(props: LogicalProps) {
@@ -17,7 +17,7 @@ export function LogicalC(props: LogicalProps) {
     let rhs: any;
     let operator: any;
 
-    if (model.kind === c.LOGICAL ) {
+    if (model.kind === c.LOGICAL) {
         const logicalModel: Logical = model.expressionType as Logical;
         lhsExpression = logicalModel.lhsComponent
         rhsExpression = logicalModel.rhsComponent
@@ -40,7 +40,7 @@ export function LogicalC(props: LogicalProps) {
         <span>
             <button className="template-button" onClick={(e) => onClickOnExpression(lhsExpression, e)}>{lhs}</button>
             <span className="App-expression-block App-expression-block-element">
-                <button className="template-button"  onClick={(e)=> onClickOperator(e)}>{operator ? operator: "operator"}</button>
+                <button className="template-button" onClick={(e) => onClickOperator(e)}>{operator ? operator : "operator"}</button>
             </span>
             <button className="template-button" onClick={(e) => onClickOnExpression(rhsExpression, e)}>{rhs}</button>
         </span>
