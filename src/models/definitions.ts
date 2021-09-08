@@ -10,6 +10,7 @@ export interface Expression {
     | Logical
     | Arithmetic
     | Variable
+    | Unary
     | DefaultBoolean
     | Expression
 }
@@ -26,7 +27,7 @@ export interface DefaultBoolean { }
 
 export interface Comparison {
     lhsExp: Expression,
-    operator: ">" | ">=" | "<" | "<=" | "==" | "!=" |  "===" | "!==" |"operator"
+    operator: ">" | ">=" | "<" | "<=" | "==" | "!=" | "===" | "!==" | "operator"
     rhsExp: Expression
 }
 
@@ -38,7 +39,7 @@ export interface Relational extends Comparison {
 
 export interface Equality extends Comparison {
     lhsExp: Expression
-    operator:  "==" | "!=" | "===" | "!==" | "operator"
+    operator: "==" | "!=" | "===" | "!==" | "operator"
     rhsExp: Expression
 }
 
@@ -66,4 +67,9 @@ export interface Conditional {   // (1 == 1) ? x : y
     trueExpr: Expression
     keyWord2: ":"
     falseExpr: Expression
+}
+
+export interface Unary {
+    operator: "+" | "-" | "~" | "!" | "operator"
+    operand: Expression
 }
