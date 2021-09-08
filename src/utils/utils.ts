@@ -61,12 +61,12 @@ function createRelational(operator: ">" | ">=" | "<" | "<=" | "operator"): Relat
 }
 
 function createEquality (operator:  "==" | "!=" | "===" | "!==" | "operator"): Equality {
-    return { lhsExp : {type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL,},
-            operator: operator,
-            rhsExp: {type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL,} };
+    return { 
+        lhsExp : {type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL,},
+        operator: operator,
+        rhsExp: {type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL,} 
+    };
 }
-
-
 
 function createArithmetic(operator: "*" | "/" | "%" | "+" | "-" | "operator"): Arithmetic {
     return {
