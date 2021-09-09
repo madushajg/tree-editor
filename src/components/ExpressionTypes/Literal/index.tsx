@@ -61,7 +61,7 @@ export function LiteralC(props: LiteralProps) {
         
                ):(
                   <span        
-                //    onKeyDown={inputEnterHandler}
+                   onKeyDown={inputEnterHandler}
                     contentEditable={true} 
                     onBlur={inputblur} 
                     onInput = {inputChangeHandler}
