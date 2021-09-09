@@ -186,6 +186,13 @@
     border-style:dotted;
 }
 
+.literal-input {
+    /*border: none;*/
+    border-width: 1px;
+    border-color: #808bc7;
+    border-style: dotted;
+}
+
 .suggestion-buttons {
     padding: 6px 16px;
     font-size: 0.875rem;
@@ -200,7 +207,7 @@
     line-height: 1.75;
     height: 40px;
     margin-left: 2%;
-    margin-top: 6%;
+    margin-top: 3%;
 }
 
 .add-new-expression {

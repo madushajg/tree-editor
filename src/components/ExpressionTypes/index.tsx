@@ -6,6 +6,9 @@ import { VariableC } from './Variable';
 import { EqualityC } from './Equality';
 import { ConditionalC } from './Conditional';
 import { LogicalC } from './Logical';
+import { TypeCheckC } from './TypeCheck';
+import { UnaryC } from './Unary';
+import { StringTemplateC } from './StringTemplate';
 import { DefaultBooleanC } from './Default/Boolean';
 
 export { ArithmeticC };
@@ -16,4 +19,7 @@ export { VariableC };
 export { EqualityC };
 export { ConditionalC };
 export { LogicalC };
+export { UnaryC };
+export { TypeCheckC };
+export { StringTemplateC };
 export { DefaultBooleanC };
