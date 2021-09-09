@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Expression } from "../../models/definitions";
 import { getExpressionTypeComponent, getSuggestionsBasedOnExpressionKind } from "../../utils";
 import * as c from "../../constants";
