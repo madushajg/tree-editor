@@ -33,7 +33,7 @@ export function LiteralC(props: LiteralProps) {
     
     const inputblur = (event:  React.FocusEvent<HTMLInputElement>) => {
         if (literal !==""){
-            addExpression(model, "literal", literal)
+            addExpression(model, c.LITERAL, literal)
         }        
     };
 
@@ -44,7 +44,7 @@ export function LiteralC(props: LiteralProps) {
 
     const inputEnterHandler = (event:  React.KeyboardEvent<HTMLSpanElement>) => {
         if (event.code === "Enter" || event.code === "Tab"){
-            addExpression(model, "literal", event.currentTarget.textContent);
+            addExpression(model, c.LITERAL, event.currentTarget.textContent);
         }
         
       };
@@ -60,7 +60,11 @@ export function LiteralC(props: LiteralProps) {
               }}>{value}</span>
         
                ):(
-                  <span         onKeyDown={inputEnterHandler} contentEditable={true} onBlur={inputblur} onInput = {inputChangeHandler}
+                  <span        
+                //    onKeyDown={inputEnterHandler}
+                    contentEditable={true} 
+                    onBlur={inputblur} 
+                    onInput = {inputChangeHandler}
                   > {value} </span>)
                 }
             </>
