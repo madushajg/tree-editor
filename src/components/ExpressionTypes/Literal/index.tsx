@@ -50,7 +50,6 @@ export function LiteralC(props: LiteralProps) {
       };
       
     return (
-<<<<<<< HEAD
         <>
             {
             isDoubleClick?(
@@ -65,13 +64,5 @@ export function LiteralC(props: LiteralProps) {
                   > {value} </span>)
                 }
             </>
-=======
-        <span className="App-expression-block App-expression-block-element">
-            <input type="text" id="literal" name="literal" onClick={(e) => onClickOnExpression(e)} className="literal-input"></input>
-            {/* <button className="template-button" onClick={(e) => onClickOnExpression(e)}>
-                {value}
-            </button> */}
-        </span>
->>>>>>> 3d0e21d1cf2aec16750d40881137d3c981bffd3d
     );
 }
