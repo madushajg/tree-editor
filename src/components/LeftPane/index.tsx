@@ -28,7 +28,7 @@ export function LeftPane(props: ModelProps) {
     }
 
     const onClickSuggestionButton = (model: Expression) => {
-        currentModel.model = model
+        // currentModel.model = model
         SetIsSuggestionClicked(!isSuggestionClicked)
     }
 

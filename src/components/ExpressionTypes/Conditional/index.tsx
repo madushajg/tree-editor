@@ -1,5 +1,5 @@
 import React from "react";
-import { Expression, Equality, Conditional } from "../../../models/definitions";
+import { Expression, Conditional } from "../../../models/definitions";
 import { getSuggestionsBasedOnExpressionKind } from "../../../utils";
 import { ExpressionComponent } from "../../Expression";
 import * as c from "../../../constants";
