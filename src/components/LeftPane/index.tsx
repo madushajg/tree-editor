@@ -1,35 +1,37 @@
 import React, { useState } from "react";
-import { Expression } from '../../models/definitions'
 import { getSuggestionsBasedOnExpressionKind } from "../../utils";
 import { ExpressionComponent } from "../Expression";
 import * as c from "../../constants";
 
 import '../MainContainer/styles.css';
 import { Suggestions } from "../Suggestions";
+import { STNode } from "../../models/syntax-tree-interfaces";
 
 
 interface ModelProps {
-    model: Expression
-    currentModel: { model: Expression }
+    model: STNode
+    currentModel: { model: STNode }
 }
 
 export function LeftPane(props: ModelProps) {
     const { model, currentModel } = props;
 
     const [suggestionList, SetSuggestionsList] = useState(getSuggestionsBasedOnExpressionKind(c.DEFAULT_BOOL));
-    const [isSuggestionClicked, SetIsSuggestionClicked] = useState(false);
+    const [, SetIsSuggestionClicked] = useState(false);
     const [isOperator, SetIsOperator] = useState(false);
 
-    const onClickExpressionButton = (suggestions: string[], model: Expression, operator: boolean) => {
-        currentModel.model = model
+
+    const onClickExpressionButton = (suggestions: string[], cModel: STNode, operator: boolean) => {
+        currentModel.model = cModel;
         SetSuggestionsList(suggestions)
         SetIsSuggestionClicked(false)
         SetIsOperator(operator)
     }
 
-    const onClickSuggestionButton = (model: Expression) => {
-        // currentModel.model = model
-        SetIsSuggestionClicked(!isSuggestionClicked)
+    const onClickSuggestionButton = (model: STNode) => {
+        SetIsSuggestionClicked(prevState => {
+            return !prevState;
+        });
     }
 
 

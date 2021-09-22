@@ -1,27 +1,26 @@
 import React from "react";
-import { Expression } from "../../models/definitions";
+import { STNode } from "../../models/syntax-tree-interfaces";
 import { addExpression, addOperator } from "../../utils/utils";
 
 import '../MainContainer/styles.css';
 
 interface SuggestionsProps {
-    model: Expression
+    model: STNode
     suggestions: string[],
     operator: boolean,
-    callBack: (model: Expression) => void
+    callBack: (model: STNode) => void
 }
 
 export function Suggestions(props: SuggestionsProps) {
     const { model, suggestions, operator, callBack } = props;
 
-    const onClickSuggestion = (kind: string, operator: boolean, model: Expression) => {
+    const onClickSuggestion = (kind: string, operator: boolean, model: STNode) => {
         if (operator) {
             addOperator(model, kind)
         } else {
             addExpression(model, kind);
         }
         callBack(model)
-
     }
 
     return (

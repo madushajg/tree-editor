@@ -4,7 +4,8 @@ import { LeftPane } from '../LeftPane';
 import baseImage from './base.png';
 
 import './styles.css';
-import { Expression } from '../../models/definitions';
+import { STNode } from '../../models/syntax-tree-interfaces';
+import { sampleModel } from './model';
 
 // if (var1 + var2) > 10
 // export const sampleModel: Expression = {
@@ -103,10 +104,10 @@ import { Expression } from '../../models/definitions';
 //     // }
 // }
 
-export const sampleModel: Expression = {
-    type: ["boolean"],
-    kind: "DefaultBooleanC"
-}
+// export const sampleModel: Expression = {
+//     type: ["boolean"],
+//     kind: "DefaultBooleanC"
+// }
 
 // // if 30 > 40
 // export const sampleModel: Expression = {
@@ -131,18 +132,19 @@ export const sampleModel: Expression = {
 //     }
 // }
 
+const exprModel = sampleModel.condition; 
 
 
 export function MainContainer() {
-    let currentModel: { model: Expression } = {
-        model: sampleModel
+    let currentModel: { model: STNode } = {
+        model: exprModel
     }
 
     return (
         <div className="App">
             <img src={baseImage} alt="base" width='100%' />
             <div className="App-tree-editor">
-                <LeftPane model={sampleModel} currentModel={currentModel} />
+                <LeftPane model={exprModel} currentModel={currentModel} />
                 <div className="vl"></div>
                 <RightPane />
             </div>

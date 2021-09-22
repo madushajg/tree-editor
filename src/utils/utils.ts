@@ -1,132 +1,96 @@
-import { Arithmetic, Conditional, Equality, Expression, Literal, Logical, Relational, TypeCheck, Unary, Variable, StringTemplate } from '../models/definitions';
+import { Expression } from '../models/definitions';
 import * as c from "../constants";
+import { BinaryExpression, STNode } from '../models/syntax-tree-interfaces';
 
 export function deleteExpression(model: Expression) {
     delete model.expressionType;
 }
 
-export function addOperator(model: Expression, kind: any) {
-    let expression: any = model.expressionType
+export function addOperator(model: STNode, kind: any) {
+    let expression: any = model;
     if ("typeDescriptor" in expression) {
         expression.typeDescriptor = kind
     } else {
-        expression.operator = kind
+        expression.operator.value = kind
     }
 }
 
-export function addExpression(model: Expression, kind: string, value?: any) {
-    model['kind'] = kind;
-    var expressionTemplate: TypeCheck
-        | Conditional
-        | Literal
-        | Arithmetic
-        | Variable
-        | Relational
-        | Equality
-        | Logical
-        | StringTemplate
-        | Unary
-        | Expression;
-
-    if (kind === c.LITERAL) {
-        expressionTemplate = createLiteral(value);
+export function addExpression(model: STNode, kind: string, value?: any) {
+    if (kind === c.ARITHMETIC) {
+        Object.assign(model, createArithmetic(value));
     } else if (kind === c.RELATIONAL) {
-        expressionTemplate = createRelational(value);
-    } else if (kind === c.EQUALITY) {
-        expressionTemplate = createEquality(value);
-    } else if (kind === c.CONDITIONAL) {
-        expressionTemplate = createConditional();
-    } else if (kind === c.ARITHMETIC) {
-        expressionTemplate = createArithmetic(value);
-    } else if (kind === c.LOGICAL) {
-        expressionTemplate = createLogical(value);
-    } else if (kind === c.VARIABLE) {
-        expressionTemplate = createVariable(value);
-    } else if (kind === c.UNARY) {
-        expressionTemplate = createUnary(value);
-    } else if (kind === c.STRING_TEMPLATE) {
-        expressionTemplate = createStringTemplate();
+        Object.assign(model, createRelational(value));
     } else {
-        expressionTemplate = createTypeCheck(value);
+        console.log(`Unsuported kind. (${kind})`);
     }
-
-    model['expressionType'] = expressionTemplate;
 }
 
-
-function createLiteral(value: any): Literal {
-    return { value: value };
-}
-
-function createVariable(name: string): Variable {
-    return { name: name };
-}
-
-function createRelational(operator: ">" | ">=" | "<" | "<=" | "operator"): Relational {
+function createArithmetic(operator: "*" | "/" | "%" | "+" | "-" | "operator"): BinaryExpression {
     return {
-        lhsExp: { type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL, },
-        operator: operator,
-        rhsExp: { type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL, }
+        kind: "BinaryExpression",
+        lhsExpr: {
+            kind: "NumericLiteral",
+            literalToken: {
+                kind: "DecimalIntegerLiteralToken",
+                isToken: false,
+                value: "expression",
+                source: ""
+            },
+            source: ""
+        },
+        operator: {
+            kind: "PlusToken",
+            isToken: false,
+            value: "+",
+            source: ""
+        },
+        rhsExpr: {
+            kind: "NumericLiteral",
+            literalToken: {
+                kind: "DecimalIntegerLiteralToken",
+                isToken: false,
+                value: "expression",
+                source: ""
+            },
+            source: ""
+        },
+        source: ""
     };
 }
 
-function createEquality(operator: "==" | "!=" | "===" | "!==" | "operator"): Equality {
+function createRelational(operator: "*" | "/" | "%" | "+" | "-" | "operator"): BinaryExpression {
     return {
-        lhsExp: { type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL, },
-        operator: operator,
-        rhsExp: { type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL, }
+        kind: "BinaryExpression",
+        lhsExpr: {
+            kind: "NumericLiteral",
+            literalToken: {
+                kind: "DecimalIntegerLiteralToken",
+                isToken: false,
+                value: "expression",
+                source: ""
+            },
+            source: ""
+        },
+        operator: {
+            kind: "GtToken",
+            isToken: false,
+            value: ">",
+            source: ""
+        },
+        rhsExpr: {
+            kind: "NumericLiteral",
+            literalToken: {
+                kind: "DecimalIntegerLiteralToken",
+                isToken: false,
+                value: "expression",
+                source: ""
+            },
+            source: ""
+        },
+        source: ""
     };
 }
 
-function createArithmetic(operator: "*" | "/" | "%" | "+" | "-" | "operator"): Arithmetic {
-    return {
-        lhsOperand: { type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL, },
-        operator: operator,
-        rhsOperand: { type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL, }
-    };
-
-}
-
-function createConditional(): Conditional {
-    return {
-        condition: { type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL, },
-        keyWord1: '?',
-        trueExpr: { type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL, },
-        keyWord2: ':',
-        falseExpr: { type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL, }
-    }
-}
-
-function createLogical(operator: "&&" | "||" | "operator"): Logical {
-    return {
-        lhsComponent: { type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL, },
-        operator: operator,
-        rhsComponent: { type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL, }
-    };
-}
-
-function createStringTemplate(): StringTemplate {
-    return {
-        start: "string `",
-        exp: { type: ["string"], kind: c.DEFAULT_BOOL},
-        end: "`"
-    }
-}
-
-function createTypeCheck(type: "string" | "int" | "float" | "boolean"): TypeCheck {
-    return {
-        value: { type: ["int", "float", "decimal"], kind: c.DEFAULT_BOOL, },
-        keyWord: "is",
-        typeDescriptor: type
-    }
-}
-
-function createUnary(operator: "+" | "-" | "~" | "!" | "operator"): Unary {
-    return {
-        operator: operator,
-        operand: { type: ["int", "float", "decimal", "boolean"], kind: c.DEFAULT_BOOL, }
-    }
-}
 // export const ExpressionSuggestionsByKind : {[key: string]: string[]} = {
 //     literal : ["comparison", "logical", "arithmetic"],
 //     comparison : ["arithmetic", "conditional", "type-checks"],
@@ -149,6 +113,40 @@ export const ExpressionSuggestionsByKind: { [key: string]: string[] } = {
     UnaryC: [c.LITERAL, c.RELATIONAL, c.EQUALITY, c.ARITHMETIC],
     StringTemplateC: [c.STRING_TEMPLATE, c.ARITHMETIC, c.CONDITIONAL]
 }
+
+export const ExpressionKindByOperator: { [key: string]: string } = {
+    AsteriskToken: c.ARITHMETIC,
+    BitwiseAndToken: c.ARITHMETIC,
+    BitwiseXorToken: c.ARITHMETIC,
+    DoubleDotLtToken: c.ARITHMETIC,
+    DoubleEqualToken: c.EQUALITY,
+    EllipsisToken: c.ARITHMETIC,
+    ElvisToken: c.ARITHMETIC,
+    GtEqualToken: c.RELATIONAL,
+    GtToken: c.RELATIONAL,
+    LogicalAndToken: c.LOGICAL,
+    LogicalOrToken: c.LOGICAL,
+    LtEqualToken: c.RELATIONAL,
+    LtToken: c.RELATIONAL,
+    NotDoubleEqualToken: c.EQUALITY,
+    NotEqualToken: c.EQUALITY,
+    PercentToken: c.ARITHMETIC,
+    PipeToken: c.ARITHMETIC,
+    PlusToken: c.ARITHMETIC,
+    SlashToken: c.ARITHMETIC,
+    TrippleEqualToken: c.EQUALITY
+}
+
+// export const STKindByKind: { [key: string]: string } = {
+//     RelationalC: "BinaryExpression",
+//     ArithmeticC: "BinaryExpression",
+//     LogicalC: "BinaryExpression",
+//     ConditionalC: "ConditionalExpression",
+//     EqualityC: "BinaryExpression",
+//     TypeCheckC: "TypeTestExpression",
+//     UnaryC: "UnaryExpression",
+//     StringTemplateC: "StringTemplateExpression"
+// }
 
 
 // Since there is no LS backend,we will not be able to find the type
