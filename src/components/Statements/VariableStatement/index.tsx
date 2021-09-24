@@ -2,11 +2,11 @@ import React, { ReactNode } from "react";
 
 import { getSuggestionsBasedOnExpressionKind } from "../../../utils";
 import * as c from "../../../constants";
-import { Expression } from "../../../models/definitions";
+import { STNode } from "../../../models/syntax-tree-interfaces";
 
 interface VariableStatementProps {
-    model: Expression
-    callBack: (suggestions: string[], model: Expression, operator: boolean) => void
+    model: STNode
+    callBack: (suggestions: string[], model: STNode, operator: boolean) => void
     isRoot: boolean
     component: ReactNode
 }
@@ -14,7 +14,7 @@ interface VariableStatementProps {
 export function VariableStatement(props: VariableStatementProps) {
     const { model, callBack, isRoot, component } = props;
 
-    const onClickOnRootExpression = (model: Expression, e: any) => {
+    const onClickOnRootExpression = (model: STNode, e: any) => {
         e.stopPropagation()
         callBack(getSuggestionsBasedOnExpressionKind(c.DEFAULT_BOOL), model, false) // Need to change this to get suggestions for variable
     };

@@ -157,7 +157,7 @@ import { IfElseStatement } from "../../models/syntax-tree-interfaces";
 //     }
 //   };
 
-
+// if 20 > 10 {} else {}
 export const sampleModel: IfElseStatement = {
     "kind": "IfElseStatement",
     "ifKeyword": {
@@ -205,9 +205,9 @@ export const sampleModel: IfElseStatement = {
         }
       },
       "operator": {
-        "kind": "GtToken",
+        "kind": "PlusToken",
         "isToken": true,
-        "value": ">",
+        "value": "+",
         "source": "",
         "position": {
           "startLine": 4,
@@ -246,7 +246,7 @@ export const sampleModel: IfElseStatement = {
           "diagnostics": []
         }
       },
-      "source": "20 > 10 ",
+      "source": "20 + 10 ",
       "position": {
         "startLine": 4,
         "startColumn": 11,

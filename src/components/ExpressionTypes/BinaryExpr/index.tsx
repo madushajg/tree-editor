@@ -3,12 +3,13 @@ import { getKindBasedOnOperator, getSuggestionsBasedOnExpressionKind } from "../
 import { getOperatorSuggestions } from "../../../utils";
 import { ExpressionComponent } from "../../Expression";
 import { BinaryExpression, STNode } from "../../../models/syntax-tree-interfaces";
+import { Operator } from "../../../utils/utils";
 
 interface BinaryProps {
     model: STNode
-    callBack: (suggestions: string[], model: STNode, operator: boolean) => void
+    callBack: (suggestions: string[]|Operator[], model: STNode, operator: boolean) => void
 }
-export function BinaryExpressionCC(props: BinaryProps) {
+export function BinaryExpressionC(props: BinaryProps) {
     const { model, callBack } = props;
     let lhsExpression: any;
     let rhsExpression: any;
@@ -42,9 +43,7 @@ export function BinaryExpressionCC(props: BinaryProps) {
     return (
         <span>
             <button className="template-button" onClick={(e) => onClickOnExpression(lhsExpression, e)}>{lhs}</button>
-            <span className="App-expression-block App-expression-block-element">
-                <button className="template-button" onClick={(e) => onClickOperator(e)}>{operator ? operator : "operator"}</button>
-            </span>
+            <button className="template-button" onClick={(e) => onClickOperator(e)}>{operator ? operator : "operator"}</button>
             <button className="template-button" onClick={(e) => onClickOnExpression(rhsExpression, e)}>{rhs}</button>
         </span>
     );

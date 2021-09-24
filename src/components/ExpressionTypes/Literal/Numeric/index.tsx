@@ -8,7 +8,7 @@ interface LiteralProps {
     callBack: (suggestions: string[], model: STNode) => void
 }
 
-export function NumericLiteralCC(props: LiteralProps) {
+export function NumericLiteralC(props: LiteralProps) {
     const { model, callBack } = props;
     let literalModel: NumericLiteral;
     let value: any;

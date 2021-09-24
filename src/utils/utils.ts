@@ -2,16 +2,22 @@ import { Expression } from '../models/definitions';
 import * as c from "../constants";
 import { BinaryExpression, STNode } from '../models/syntax-tree-interfaces';
 
+export interface Operator {
+    value: string,
+    kind: string
+}
+
 export function deleteExpression(model: Expression) {
     delete model.expressionType;
 }
 
-export function addOperator(model: STNode, kind: any) {
+export function addOperator(model: STNode, operator: Operator) {
     let expression: any = model;
     if ("typeDescriptor" in expression) {
-        expression.typeDescriptor = kind
+        expression.typeDescriptor = operator.value;
     } else {
-        expression.operator.value = kind
+        expression.operator.value = operator.value;
+        expression.operator.kind = operator.kind;
     }
 }
 
@@ -21,7 +27,7 @@ export function addExpression(model: STNode, kind: string, value?: any) {
     } else if (kind === c.RELATIONAL) {
         Object.assign(model, createRelational(value));
     } else {
-        console.log(`Unsuported kind. (${kind})`);
+        console.log(`Unsupported kind. (${kind})`);
     }
 }
 
@@ -91,27 +97,17 @@ function createRelational(operator: "*" | "/" | "%" | "+" | "-" | "operator"): B
     };
 }
 
-// export const ExpressionSuggestionsByKind : {[key: string]: string[]} = {
-//     literal : ["comparison", "logical", "arithmetic"],
-//     comparison : ["arithmetic", "conditional", "type-checks"],
-//     relational : ["arithmetic", "conditional", "type-checks"],
-//     ArithmeticC : ["literal","ArithmeticC", "conditional"],
-//     logical : ["conditional"],
-//     conditional : ["literal"]
-// }
-
 export const ExpressionSuggestionsByKind: { [key: string]: string[] } = {
-    LiteralC: [],
-    // comparison : [c.ARITHMETIC, c.CONDITIONAL, "type-checks"],
-    RelationalC: [c.ARITHMETIC, c.CONDITIONAL, c.TYPE_CHECK, c.RELATIONAL, c.LITERAL],
-    ArithmeticC: [c.LITERAL, c.ARITHMETIC, c.CONDITIONAL],
-    LogicalC: [c.RELATIONAL, c.LOGICAL, c.CONDITIONAL, c.LITERAL],
-    ConditionalC: [c.LITERAL, c.RELATIONAL, c.TYPE_CHECK, c.CONDITIONAL],
-    EqualityC: [c.ARITHMETIC, c.CONDITIONAL, c.LITERAL, c.STRING_TEMPLATE,],
-    DefaultBooleanC: [c.RELATIONAL, c.EQUALITY, c.LOGICAL, c.LITERAL, c.TYPE_CHECK, c.CONDITIONAL, c.UNARY],
-    TypeCheckC: [c.LITERAL, c.CONDITIONAL   ],
-    UnaryC: [c.LITERAL, c.RELATIONAL, c.EQUALITY, c.ARITHMETIC],
-    StringTemplateC: [c.STRING_TEMPLATE, c.ARITHMETIC, c.CONDITIONAL]
+    Literal: [],
+    Relational: [c.ARITHMETIC, c.CONDITIONAL, c.TYPE_CHECK, c.RELATIONAL, c.LITERAL],
+    Arithmetic: [c.LITERAL, c.ARITHMETIC, c.CONDITIONAL],
+    Logical: [c.RELATIONAL, c.LOGICAL, c.CONDITIONAL, c.LITERAL],
+    Conditional: [c.LITERAL, c.RELATIONAL, c.TYPE_CHECK, c.CONDITIONAL],
+    Equality: [c.ARITHMETIC, c.CONDITIONAL, c.LITERAL, c.STRING_TEMPLATE,],
+    DefaultBoolean: [c.RELATIONAL, c.EQUALITY, c.LOGICAL, c.LITERAL, c.TYPE_CHECK, c.CONDITIONAL, c.UNARY],
+    TypeCheck: [c.LITERAL, c.CONDITIONAL   ],
+    Unary: [c.LITERAL, c.RELATIONAL, c.EQUALITY, c.ARITHMETIC],
+    StringTemplate: [c.STRING_TEMPLATE, c.ARITHMETIC, c.CONDITIONAL]
 }
 
 export const ExpressionKindByOperator: { [key: string]: string } = {
@@ -137,18 +133,6 @@ export const ExpressionKindByOperator: { [key: string]: string } = {
     TrippleEqualToken: c.EQUALITY
 }
 
-// export const STKindByKind: { [key: string]: string } = {
-//     RelationalC: "BinaryExpression",
-//     ArithmeticC: "BinaryExpression",
-//     LogicalC: "BinaryExpression",
-//     ConditionalC: "ConditionalExpression",
-//     EqualityC: "BinaryExpression",
-//     TypeCheckC: "TypeTestExpression",
-//     UnaryC: "UnaryExpression",
-//     StringTemplateC: "StringTemplateExpression"
-// }
-
-
 // Since there is no LS backend,we will not be able to find the type
 // export const ExpressionSuggestionByType : {[key: string]: string[]}= {
 //    "int"  : ["comparison", "logical", "arithmetic","shift-expr","unary-expr"],
@@ -166,13 +150,54 @@ export const TypesForExpressionKind: { [key: string]: string[] } = {
     // arithmetic : ["int","decimal","float","string"]
 }
 
-export const OperatorsForExpressionKind: { [key: string]: string[] } = {
-    ArithmeticC: ["+ ", "- ", "* ", "/ ", "% "],
-    RelationalC: ["> ", ">= ", "< ", "<= "],
-    EqualityC: ["== ", "!= ", "=== ", "!== "],
-    LogicalC: ["&& ", "|| "],
-    UnaryC: ["+ ", "- ", "! ", "~ "],
-    // comparison: [">","<",">=","<=","==","!=","===","!=="],
-    ShiftC: ["<< ", ">> ", ">>> "],
-    RangeC: ["... ", "..< "]
+// export const OperatorsForExpressionKind: { [key: string]: string[] } = {
+//     ArithmeticC: ["+ ", "- ", "* ", "/ ", "% "],
+//     RelationalC: ["> ", ">= ", "< ", "<= "],
+//     EqualityC: ["== ", "!= ", "=== ", "!== "],
+//     LogicalC: ["&& ", "|| "],
+//     UnaryC: ["+ ", "- ", "! ", "~ "],
+//     // comparison: [">","<",">=","<=","==","!=","===","!=="],
+//     ShiftC: ["<< ", ">> ", ">>> "],
+//     RangeC: ["... ", "..< "]
+// }
+
+export const OperatorsForExpressionKind: { [key: string]: Operator[] } = {
+    Arithmetic: [
+        {value: "+", kind: "PlusToken"},
+        {value: "-", kind: "MinusToken"},
+        {value: "*", kind: "AsteriskToken"},
+        {value: "/", kind: "SlashToken"},
+        {value: "%", kind: "PercentToken"}
+    ],
+    Relational: [
+        {value: ">", kind: "GtToken"},
+        {value: ">=", kind: "GtEqualToken"},
+        {value: "<", kind: "LtToken"},
+        {value: "<=", kind: "LtEqualToken"}
+    ],
+    Equality: [
+        {value: "==", kind: "DoubleEqualToken"},
+        {value: "!=", kind: "NotEqualToken"},
+        {value: "===", kind: "TrippleEqualToken"},
+        {value: "!==", kind: "NotDoubleEqualToken"}
+    ],
+    Logical: [
+        {value: "&&", kind: "LogicalAndToken"},
+        {value: "||", kind: "LogicalOrToken"}
+    ],
+    Unary: [
+        {value: "+", kind: "PlusToken"},
+        {value: "-", kind: "MinusToken"},
+        {value: "!", kind: "Unknown"},
+        {value: "~", kind: "Unknown"}
+    ],
+    Shift: [
+        {value: "<<", kind: "Unknown"},
+        {value: ">>", kind: "Unknown"},
+        {value: ">>>", kind: "Unknown"}
+    ],
+    Range: [
+        {value: "...", kind: "Unknown"},
+        {value: "..<", kind: "DoubleDotLtToken"}
+    ]
 }
