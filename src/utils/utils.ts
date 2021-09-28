@@ -1,6 +1,6 @@
 import { Expression } from '../models/definitions';
 import * as c from "../constants";
-import { BinaryExpression, STNode } from '../models/syntax-tree-interfaces';
+import { BinaryExpression, BracedExpression, STNode } from '../models/syntax-tree-interfaces';
 
 export interface Operator {
     value: string,
@@ -21,50 +21,70 @@ export function addOperator(model: STNode, operator: Operator) {
     }
 }
 
-export function addExpression(model: STNode, kind: string, value?: any) {
+export function addExpression(model: any, kind: string, value?: any) {
+    // model = {kind: "null", source: "null"};
+    delete model.literalToken;
     if (kind === c.ARITHMETIC) {
-        Object.assign(model, createArithmetic(value));
+        Object.assign(model, createArithmetic());
     } else if (kind === c.RELATIONAL) {
-        Object.assign(model, createRelational(value));
+        Object.assign(model, createRelational());
+    } else if (kind === c.EQUALITY) {
+        Object.assign(model, createEquality());
     } else {
         console.log(`Unsupported kind. (${kind})`);
     }
 }
 
-function createArithmetic(operator: "*" | "/" | "%" | "+" | "-" | "operator"): BinaryExpression {
+function createArithmetic(): BracedExpression {
     return {
-        kind: "BinaryExpression",
-        lhsExpr: {
-            kind: "NumericLiteral",
-            literalToken: {
-                kind: "DecimalIntegerLiteralToken",
+        kind: "BracedExpression",
+        source: "",
+        closeParen: {
+            kind: "CloseParenToken",
+            isToken: true,
+            value: ")",
+            source: "",
+        },
+        expression: {
+            kind: "BinaryExpression",
+            lhsExpr: {
+                kind: "NumericLiteral",
+                literalToken: {
+                    kind: "DecimalIntegerLiteralToken",
+                    isToken: false,
+                    value: "expression",
+                    source: ""
+                },
+                source: ""
+            },
+            operator: {
+                kind: "PlusToken",
                 isToken: false,
-                value: "expression",
+                value: "+",
+                source: ""
+            },
+            rhsExpr: {
+                kind: "NumericLiteral",
+                literalToken: {
+                    kind: "DecimalIntegerLiteralToken",
+                    isToken: false,
+                    value: "expression",
+                    source: ""
+                },
                 source: ""
             },
             source: ""
         },
-        operator: {
-            kind: "PlusToken",
-            isToken: false,
-            value: "+",
+        openParen: {
+            kind: "OpenParenToken",
+            isToken: true,
+            value: "(",
             source: ""
-        },
-        rhsExpr: {
-            kind: "NumericLiteral",
-            literalToken: {
-                kind: "DecimalIntegerLiteralToken",
-                isToken: false,
-                value: "expression",
-                source: ""
-            },
-            source: ""
-        },
-        source: ""
+        }
     };
 }
 
-function createRelational(operator: "*" | "/" | "%" | "+" | "-" | "operator"): BinaryExpression {
+function createRelational(): BinaryExpression {
     return {
         kind: "BinaryExpression",
         lhsExpr: {
@@ -81,6 +101,39 @@ function createRelational(operator: "*" | "/" | "%" | "+" | "-" | "operator"): B
             kind: "GtToken",
             isToken: false,
             value: ">",
+            source: ""
+        },
+        rhsExpr: {
+            kind: "NumericLiteral",
+            literalToken: {
+                kind: "DecimalIntegerLiteralToken",
+                isToken: false,
+                value: "expression",
+                source: ""
+            },
+            source: ""
+        },
+        source: ""
+    };
+}
+
+function createEquality(): BinaryExpression {
+    return {
+        kind: "BinaryExpression",
+        lhsExpr: {
+            kind: "NumericLiteral",
+            literalToken: {
+                kind: "DecimalIntegerLiteralToken",
+                isToken: false,
+                value: "expression",
+                source: ""
+            },
+            source: ""
+        },
+        operator: {
+            kind: "TrippleEqualToken",
+            isToken: false,
+            value: "===",
             source: ""
         },
         rhsExpr: {

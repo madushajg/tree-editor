@@ -7,6 +7,7 @@
 import { BooleanLiteralC } from './Literal/Boolean';
 import { NumericLiteralC } from './Literal/Numeric';
 import { BinaryExpressionC } from './BinaryExpr';
+import { BracedExpressionC } from './BracedExpr';
 
 // export { VariableC };
 // export { ConditionalC };
@@ -17,3 +18,4 @@ import { BinaryExpressionC } from './BinaryExpr';
 export { BooleanLiteralC as BooleanLiteral };
 export { NumericLiteralC as NumericLiteral };
 export { BinaryExpressionC as BinaryExpression };
+export { BracedExpressionC as BracedExpression };
