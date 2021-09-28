@@ -1,6 +1,6 @@
 import { Expression } from '../models/definitions';
 import * as c from "../constants";
-import { BinaryExpression, BracedExpression, STNode } from '../models/syntax-tree-interfaces';
+import { BinaryExpression, BracedExpression, StringLiteral, STNode } from '../models/syntax-tree-interfaces';
 
 export interface Operator {
     value: string,
@@ -23,13 +23,19 @@ export function addOperator(model: STNode, operator: Operator) {
 
 export function addExpression(model: any, kind: string, value?: any) {
     // model = {kind: "null", source: "null"};
-    delete model.literalToken;
+    // delete model.literalToken;
     if (kind === c.ARITHMETIC) {
         Object.assign(model, createArithmetic());
     } else if (kind === c.RELATIONAL) {
         Object.assign(model, createRelational());
     } else if (kind === c.EQUALITY) {
         Object.assign(model, createEquality());
+    } else if (kind === c.LITERAL) {
+        if (value) {
+            Object.assign(model, createLiteral(value));
+        } else {
+            Object.assign(model, createLiteral("expression"));
+        }
     } else {
         console.log(`Unsupported kind. (${kind})`);
     }
@@ -147,6 +153,19 @@ function createEquality(): BinaryExpression {
             source: ""
         },
         source: ""
+    };
+}
+
+function createLiteral(value: string) : StringLiteral {
+    return {
+        "kind": "StringLiteral",
+        "literalToken": {
+            "kind": "StringLiteralToken",
+            "isToken": true,
+            "value": value,
+            "source": ""
+        },
+        "source": ""        
     };
 }
 
