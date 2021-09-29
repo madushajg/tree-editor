@@ -42,6 +42,8 @@ export function LeftPane(props: ModelProps) {
 
     console.log(CodeGenVisitor.getCodeSnippet());
 
+    console.log(model);
+
 
     return (
         <div className="App-leftPane">

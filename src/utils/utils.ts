@@ -22,8 +22,11 @@ export function addOperator(model: STNode, operator: Operator) {
 }
 
 export function addExpression(model: any, kind: string, value?: any) {
-    // model = {kind: "null", source: "null"};
-    // delete model.literalToken;
+    const initialKeys = Object.keys(model);
+    initialKeys.forEach((key) => {
+        delete model[key];
+    });
+
     if (kind === c.ARITHMETIC) {
         Object.assign(model, createArithmetic());
     } else if (kind === c.RELATIONAL) {
